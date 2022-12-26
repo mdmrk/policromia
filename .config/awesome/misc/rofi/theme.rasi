@@ -1,0 +1,133 @@
+/*
+ * Author : https://github.com/adi1090x
+ * Edited : https://github.com/saimoomedits
+ */
+
+configuration {
+    modi: "drun";
+    show-icons:                     true;
+	icon-theme: 					"Papirus-Dark";
+    display-drun: 					"";
+    application-fallback-icon:  	"Adwaita";
+    drun-display-format:            "{name}";
+    disable-history:                false;
+	sidebar-mode: 					false;
+}
+
+* {
+    background:                     #101012BF;
+	font:							"JetBrainsMono Nerd Font Bold 11";
+    background-bar:                 #f2f2f215;
+    background-alt:                 #00000000;
+    foreground:                     #f2f2f2EE;
+    foreground:                     #f2f2f2EE;
+    accent:			            	#3DAEE966;
+}
+
+
+// window properties
+window {
+    transparency:                   "real";
+    background-color:               @background;
+    text-color:                     @foreground;
+	border:							0px;
+	border-color:					@border;
+    border-radius:                  0px;
+	width:							85%;
+	height:							85%;
+    location:                       center;
+}
+
+// prompt
+prompt {
+    enabled: 						true;
+	padding: 						0px;
+	background-color: 				@background-alt;
+	text-color: 					@foreground;
+	font:							"Font Awesome 6 Pro Solid 17";
+    margin:                         0 10px 0 0;
+}
+
+// text entry
+entry {
+    background-color:               @background-alt;
+    text-color:                     @foreground;
+    font:							"JetBrainsMono Nerd Font Bold 12";
+    placeholder-color:              @foreground;
+    placeholder:                    "Search";
+    padding:                        0px;
+    blink:                          true;
+}
+
+/// search bar
+inputbar {
+	children: 						[ prompt, entry ];
+    background-color:               @background-bar;
+    text-color:                     @foreground;
+    expand:                         false;
+	border:							0;
+    border-radius:                  50%;
+	border-color:					@accent;
+    margin:                         0% 15% 0% 15%;
+    padding:                        1.5%;
+}
+
+// applications view
+listview {
+    background-color:               @background-alt;
+    columns:                        6;
+    lines:                          5;
+    spacing:                        2%;
+    cycle:                          false;
+    dynamic:                        true;
+    layout:                         vertical;
+}
+
+// the mainbox
+mainbox {
+    background-color:               @background-alt;
+	border:							0% 0% 0% 0%;
+    border-radius:                  0% 0% 0% 0%;
+	border-color:					@accent;
+    children:                       [ inputbar, listview ];
+    spacing:                       	8%;
+    padding:                        10% 12.5% 5% 12.5%;
+}
+
+// elements
+element {
+    background-color:               @background-alt;
+    text-color:                     @foreground;
+    orientation:                    vertical;
+    border-radius:                  0%;
+    padding:                        2.5% 0% 2.5% 0%;
+}
+
+// app icon
+element-icon {
+    background-color: 				#00000000;
+    text-color:       				inherit;
+    horizontal-align:               0.5;
+    vertical-align:                 0.5;
+    size:                           70px;
+    border:                         0px;
+}
+
+// app name
+element-text {
+    background-color: 				#00000000;
+    text-color:       				inherit;
+    expand:                         true;
+    horizontal-align:               0.5;
+    vertical-align:                 0.5;
+    margin:                         0.5% 0.5% -0.5% 0.5%;
+}
+
+// selected element
+element selected {
+    background-color:               @background-bar;
+    text-color:                     @foreground;
+	border:							0% 0% 0% 0%;
+    border-radius:                  15px;
+    border-color:                  	@accent;
+}
