@@ -25,7 +25,7 @@ awful.rules.rules = {
   -- Floating, Titlebar exceptions
   {
     rule_any = {
-      class = { 'gnome', 'gtk', 'Lxappearance', 'qt5ct', 'feh' },
+      class = { 'gnome', 'gtk', 'Lxappearance', 'qt5ct', 'feh', 'Pavucontrol' },
       name = { 'Event Tester', 'Komikku', 'marker' },
       role = { 'pop-up', 'GtkFileChooserDialog' },
       type = { 'dialog' }

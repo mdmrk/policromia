@@ -4,7 +4,7 @@ local gfs = require("gears.filesystem")
 local theme_path = gfs.get_configuration_dir() .. "/theme/"
 theme.font = 'JetBrains Mono Medium 10'
 theme.barfont = 'JetBrains Mono Medium 12'
-theme.icofont = 'Material Icons Round 14'
+theme.icofont = 'FontAwesome 6 Pro Solid 12'
 
 theme.ok = "#8C977D"
 theme.err = "#B66467"

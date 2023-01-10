@@ -1,3 +1,4 @@
+local help = require("help")
 local M = {}
 
 -- Wifi
@@ -32,6 +33,7 @@ M.clock = wibox.widget {
 }
 
 -- Battery
+
 M.battery = wibox.widget {
   font = beautiful.icofont,
   align = 'center',
@@ -41,37 +43,50 @@ M.battery = wibox.widget {
 awesome.connect_signal("blu::value", function(stat)
   if stat:match("no") then
     M.blu.opacity = 0.25
-    M.blu.markup = ""
+    M.blu.markup = "\u{f293}"
   else
     M.blu.opacity = 1
-    M.blu.markup = ""
+    M.blu.markup = "\u{f293}"
   end
 end)
 
 awesome.connect_signal("net::value", function(stat)
   if stat:match("up") then
     M.net.opacity = 1
-    M.net.markup = ""
+    M.net.markup = "\u{f0ac}"
   else
     M.net.opacity = 0.25
-    M.net.markup = ""
+    M.net.markup = "\u{f0ac}"
   end
 end)
 
-awesome.connect_signal("bat::value", function(charge)
+awesome.connect_signal("bat::value", function(status, charge)
   local icon = "\u{e19c}"
+
   if charge >= 95 then
-    icon = "\u{e1a4}"
+    icon = "\u{f240}"
   elseif charge >= 75 and charge < 95 then
-    icon = "\u{ebd4}"
+    icon = "\u{f241}"
   elseif charge >= 50 and charge < 75 then
-    icon = "\u{ebe2}"
+    icon = "\u{f242}"
   elseif charge >= 25 and charge < 50 then
-    icon = "\u{ebdd}"
+    icon = "\u{f243}"
   elseif charge >= 5 and charge < 25 then
-    icon = "\u{ebe0}"
+    icon = "\u{e0b1}"
   else
-    icon = "\u{ebd9}"
+    icon = "\u{f244}"
+  end
+  if status == "Charging" then
+    icon = help.fg(icon, "#94c74d")
+  end
+  if charge < 15 and status == "Discharging" then
+    icon = help.fg(icon, beautiful.err)
+    naughty.notify({
+      title = "Low battery",
+      text = charge .. "% battery remaining",
+      preset = naughty.config.presets.critical,
+      timeout = 4
+    })
   end
   M.battery.markup = icon
 end)
@@ -79,16 +94,18 @@ end)
 awesome.connect_signal('vol::value', function(mut, val)
   if mut:match("no") then
     M.vol.opacity = 1
-    if val > 70 then
-      M.vol.markup = ""
-    elseif val > 30 then
-      M.vol.markup = ""
+    if val > 75 then
+      M.vol.markup = "\u{f028}"
+    elseif val > 50 then
+      M.vol.markup = "\u{f6a8}"
+    elseif val > 0 then
+      M.vol.markup = "\u{f027}"
     else
-      M.vol.markup = ""
+      M.vol.markup = "\u{f026}"
     end
   else
     M.vol.opacity = 0.25
-    M.vol.markup = ""
+    M.vol.markup = "\u{f6a9}"
   end
 end)
 

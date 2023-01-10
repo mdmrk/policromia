@@ -15,7 +15,7 @@ local mem = [[
     esac;
   done < /proc/meminfo;
   printf "%d %d" "$memu" "$memt"; ]]
-local bat = [[ acpi | awk -F' ' '{print $4}' | xargs  | tr -d '[%,]' ]]
+local bat = [[ charge=$(acpi | awk -F' ' '{print $4}' | xargs  | tr -d '[%,]'); printf "$(acpi | awk -F' ' '{print $3}' | xargs | tr -d '[,]') ${charge% *}\n" ]]
 
 M.mem = function()
   awful.spawn.easy_async_with_shell(mem, function(out)
@@ -73,7 +73,8 @@ end
 
 M.bat = function()
   awful.spawn.easy_async_with_shell(bat, function(out)
-    awesome.emit_signal('bat::value', tonumber(out))
+    local val = gears.string.split(out, " ")
+    awesome.emit_signal('bat::value', val[1], tonumber(val[2]))
   end)
 end
 

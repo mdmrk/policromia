@@ -16,7 +16,7 @@ M.sep = wibox.widget {
 
 M.launch = wibox.widget {
   {
-    markup = "",
+    markup = "\u{f6e2}",
     font = beautiful.icofont,
     align = 'center',
     valign = 'center',
@@ -27,7 +27,7 @@ M.launch = wibox.widget {
 
 M.search = wibox.widget {
   {
-    markup = "",
+    markup = "\u{f002}",
     font = beautiful.icofont,
     align = 'center',
     valign = 'center',

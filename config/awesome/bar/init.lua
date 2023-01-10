@@ -25,7 +25,6 @@ local sys = wibox.widget {
     {
       {
         sys.net,
-        sys.blu,
         sys.vol,
         sys.battery,
         spacing = dpi(20),

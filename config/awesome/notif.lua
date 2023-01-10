@@ -10,7 +10,6 @@ naughty.config.defaults.shape = help.rrect(beautiful.br)
 naughty.config.defaults.border_width = dpi(15)
 naughty.config.defaults.border_color = beautiful.bg
 
-naughty.config.defaults.title = "Notification"
 naughty.config.defaults.position = "bottom_right"
 
 naughty.config.defaults.fg = beautiful.fg

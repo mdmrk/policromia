@@ -7,9 +7,6 @@ help.rrect = function(rad)
 end
 
 help.fg = function(text, color)
-  if color == nil then
-    color = '#000000'
-  end
   return "<span foreground='" .. color .. "'>" .. text .. "</span>"
 end
 
