@@ -1,6 +1,0 @@
-require("signal.volume")
-require("signal.network")
-require("signal.weather")
-require("signal.bluetooth")
--- require("signal.ram")
--- require("signal.cpu")
