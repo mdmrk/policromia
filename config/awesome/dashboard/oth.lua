@@ -5,13 +5,13 @@ M.cal = wibox.widget {
     {
       {
         align = 'center',
-        markup = help.fg("<b>Welcome, "..os.getenv('USER').."</b>", beautiful.pri),
+        markup = help.fg("<b>Welcome, " .. os.getenv('USER') .. "</b>", beautiful.pri),
         widget = wibox.widget.textbox
       },
       {
         align = 'center',
-        format="%A, %B %e",
-        refresh=1,
+        format = "%A, %B %e",
+        refresh = 1,
         widget = wibox.widget.textclock
       },
       spacing = dpi(5),

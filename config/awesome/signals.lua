@@ -73,7 +73,7 @@ end
 
 M.bat = function()
   awful.spawn.easy_async_with_shell(bat, function(out)
-      awesome.emit_signal('bat::value', tonumber(out))
+    awesome.emit_signal('bat::value', tonumber(out))
   end)
 end
 

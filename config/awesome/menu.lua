@@ -22,5 +22,5 @@ local main = awful.menu {
 main.wibox.shape = help.rrect(beautiful.br)
 
 root.buttons(gears.table.join(
-  awful.button({ }, 3, function () main:toggle() end)
+  awful.button({}, 3, function() main:toggle() end)
 ))

@@ -37,13 +37,13 @@ M.search = wibox.widget {
 }
 
 M.search:buttons(gears.table.join(
-  awful.button({}, 1, function ()
+  awful.button({}, 1, function()
     awful.spawn.with_shell("rofi -show drun -show-icons")
   end)
 ))
 
 M.launch:buttons(gears.table.join(
-  awful.button({}, 1, function ()
+  awful.button({}, 1, function()
     if not dashboard.visible then
       M.launch.fg = beautiful.pri
     else

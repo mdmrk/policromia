@@ -1,5 +1,5 @@
 naughty.config.defaults.ontop = true
-naughty.config.defaults.timeout = 3 
+naughty.config.defaults.timeout = 3
 naughty.config.defaults.screen = awful.screen.focused()
 
 naughty.config.padding = dpi(10)

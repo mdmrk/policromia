@@ -1,10 +1,10 @@
 local tasklist_buttons = gears.table.join(
-  -- Left click
-  awful.button({}, 1, function (c)
+-- Left click
+  awful.button({}, 1, function(c)
     if c == client.focus then
       c.minimized = true
     else
-      c:emit_signal("request::activate", "tasklist", {raise = true})
+      c:emit_signal("request::activate", "tasklist", { raise = true })
     end
   end)
 )
@@ -12,13 +12,13 @@ local tasklist_buttons = gears.table.join(
 return function(s)
   local task = wibox.widget {
     widget = awful.widget.tasklist {
-      screen   = s,
-      filter   = awful.widget.tasklist.filter.currenttags,
-      buttons  = tasklist_buttons,
-      layout   = {
-        layout  = wibox.layout.fixed.vertical
+      screen          = s,
+      filter          = awful.widget.tasklist.filter.currenttags,
+      buttons         = tasklist_buttons,
+      layout          = {
+        layout = wibox.layout.fixed.vertical
       },
-      style = {
+      style           = {
         shape = help.rrect(1),
       },
       widget_template = {
@@ -39,14 +39,14 @@ return function(s)
         nil,
         create_callback = function(self, c, _, _)
           self:get_children_by_id('clienticon')[1].client = c
-                      self:connect_signal('mouse::enter', function()
-                    awesome.emit_signal("bling::task_preview::visibility", s,
-                                        true, c)
-                end)
-                self:connect_signal('mouse::leave', function()
-                    awesome.emit_signal("bling::task_preview::visibility", s,
-                                        false, c)
-                end)
+          self:connect_signal('mouse::enter', function()
+            awesome.emit_signal("bling::task_preview::visibility", s,
+              true, c)
+          end)
+          self:connect_signal('mouse::leave', function()
+            awesome.emit_signal("bling::task_preview::visibility", s,
+              false, c)
+          end)
         end,
         layout = wibox.layout.align.horizontal,
       },

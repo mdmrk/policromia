@@ -28,7 +28,7 @@ M.snd = wibox.widget {
   layout = wibox.layout.stack,
 }
 
-M.mem= wibox.widget {
+M.mem = wibox.widget {
   max_value = 100,
   value = 0,
   forced_height = dpi(20),
@@ -64,7 +64,7 @@ M.temp = wibox.widget {
 awesome.connect_signal('vol::value', function(mut, val)
   if mut == 0 then
     M.vol.handle_color = beautiful.pri
-    M.snd:get_children_by_id('prg')[1].color = beautiful.pri 
+    M.snd:get_children_by_id('prg')[1].color = beautiful.pri
   else
     M.vol.handle_color = beautiful.fg2
     M.snd:get_children_by_id('prg')[1].color = beautiful.fg2

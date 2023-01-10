@@ -32,7 +32,8 @@ keys.globalkeys = gears.table.join(
   awful.key({ mod }, 'r', function() awful.util.spawn('rofi -show drun -show-icons') end),
 
   -- Screenshots
-  awful.key({mod, "Shift"}, 's', function() awful.util.spawn("scrot -s -e 'xclip -selection clipboard -t image/png -i $f'") end)
+  awful.key({ mod, "Shift" }, 's',
+    function() awful.util.spawn("scrot -s -e 'xclip -selection clipboard -t image/png -i $f'") end)
 )
 
 -- Keyboard Control
