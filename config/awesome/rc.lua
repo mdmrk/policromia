@@ -12,6 +12,7 @@ help = require('help')
 dashboard = require("dashboard")
 sig = require('signals')
 
+local signals = require("signals")
 local req = {
   'notif',
   'bar',
@@ -58,3 +59,6 @@ end)
 -- Garbage Collection
 collectgarbage('setpause', 110)
 collectgarbage('setstepmul', 1000)
+
+-- Signals
+signals.vol()

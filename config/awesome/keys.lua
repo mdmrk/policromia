@@ -1,3 +1,5 @@
+local signals = require("signals")
+
 -- Variables
 local keys = {}
 
@@ -14,11 +16,20 @@ keys.globalkeys = gears.table.join(
   --Hardware ( Laptop Users )
   awful.key({}, 'XF86MonBrightnessUp', function() awful.spawn.with_shell('brightnessctl set 5%+ -q') end),
   awful.key({}, 'XF86MonBrightnessDown', function() awful.spawn.with_shell('brightnessctl set 5%- -q') end),
-  awful.key({}, 'XF86AudioRaiseVolume', function() awful.spawn.with_shell('pactl set-sink-volume @DEFAULT_SINK@ +5%') end)
+  awful.key({}, 'XF86AudioRaiseVolume', function()
+    awful.spawn.with_shell('pactl set-sink-volume @DEFAULT_SINK@ +5%')
+    signals.vol()
+  end)
   ,
-  awful.key({}, 'XF86AudioLowerVolume', function() awful.spawn.with_shell('pactl set-sink-volume @DEFAULT_SINK@ -5%') end)
+  awful.key({}, 'XF86AudioLowerVolume', function()
+    awful.spawn.with_shell('pactl set-sink-volume @DEFAULT_SINK@ -5%')
+    signals.vol()
+  end)
   ,
-  awful.key({}, "XF86AudioMute", function() awful.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle") end),
+  awful.key({}, "XF86AudioMute", function()
+    awful.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")
+    signals.vol()
+  end),
 
   -- Window management
   awful.key({ 'Mod1' }, 'Tab', function() awful.client.focus.byidx(1) end),
@@ -29,7 +40,7 @@ keys.globalkeys = gears.table.join(
 
   -- Applications
   awful.key({ mod }, 'Return', function() awful.util.spawn('kitty') end),
-  awful.key({ mod }, 'r', function() awful.util.spawn('rofi -show drun -show-icons') end),
+  awful.key({ mod }, 'r', function() awful.util.spawn('rofi -show drun -show-icons -theme apps') end),
 
   -- Screenshots
   awful.key({ mod, "Shift" }, 's',

@@ -83,13 +83,11 @@ gears.timer {
   call_now = true,
   autostart = true,
   callback = function()
-    M.vol()
     M.net()
     M.blu()
     M.mem()
     M.temp()
     M.bat()
-    -- M.fs()
   end
 }
 

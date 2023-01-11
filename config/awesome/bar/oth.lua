@@ -38,7 +38,7 @@ M.search = wibox.widget {
 
 M.search:buttons(gears.table.join(
   awful.button({}, 1, function()
-    awful.spawn.with_shell("rofi -show drun -show-icons")
+    awful.spawn.with_shell("rofi -show drun -show-icons -theme apps")
   end)
 ))
 

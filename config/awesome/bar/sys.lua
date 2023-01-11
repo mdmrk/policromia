@@ -5,6 +5,7 @@ local M = {}
 M.net = wibox.widget {
   font = beautiful.icofont,
   align = 'center',
+  markup = "\u{f0ac}",
   widget = wibox.widget.textbox,
 }
 
@@ -53,10 +54,8 @@ end)
 awesome.connect_signal("net::value", function(stat)
   if stat:match("up") then
     M.net.opacity = 1
-    M.net.markup = "\u{f0ac}"
   else
     M.net.opacity = 0.25
-    M.net.markup = "\u{f0ac}"
   end
 end)
 
@@ -72,7 +71,7 @@ awesome.connect_signal("bat::value", function(status, charge)
   elseif charge >= 25 and charge < 50 then
     icon = "\u{f243}"
   elseif charge >= 5 and charge < 25 then
-    icon = "\u{e0b1}"
+    icon = "\u{f243}"
   else
     icon = "\u{f244}"
   end

@@ -4,21 +4,21 @@ local playerctl = bling.signal.playerctl.lib()
 local prev = wibox.widget {
   align = 'center',
   font = beautiful.icofont,
-  text = '',
+  text = '\u{f048}',
   widget = wibox.widget.textbox,
 }
 
 local next = wibox.widget {
   align = 'center',
   font = beautiful.icofont,
-  text = '',
+  text = '\u{f051}',
   widget = wibox.widget.textbox,
 }
 
 local play = wibox.widget {
   align = 'center',
   font = beautiful.icofont,
-  markup = '',
+  markup = '\u{f04b}',
   widget = wibox.widget.textbox,
 }
 
@@ -120,10 +120,10 @@ end)
 
 playerctl:connect_signal("playback_status", function(_, playing, _)
   if playing then
-    play:set_markup_silently(help.fg("", beautiful.pri))
+    play:set_markup_silently(help.fg("\u{f04c}", beautiful.pri))
     position.color = beautiful.pri
   else
-    play:set_markup_silently("")
+    play:set_markup_silently("\u{f04b}")
     position.color = beautiful.fg .. "66"
   end
 end)

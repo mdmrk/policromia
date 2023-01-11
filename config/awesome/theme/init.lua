@@ -1,25 +1,23 @@
-local theme = {}
-
+local help = require("help")
 local gfs = require("gears.filesystem")
 local theme_path = gfs.get_configuration_dir() .. "/theme/"
+
+
+local theme = {}
+
+theme.activethemepath = theme_path
+local activethemefile = io.open(theme.activethemepath .. "activetheme", "r")
+if not activethemefile then
+  return
+end
+theme.activetheme = activethemefile:read()
+activethemefile:close()
+help.merge(theme, require("theme." .. theme.activetheme .. ".colors"))
 theme.font = 'JetBrains Mono Medium 10'
 theme.barfont = 'JetBrains Mono Medium 12'
 theme.icofont = 'FontAwesome 6 Pro Solid 12'
-
-theme.ok = "#8C977D"
-theme.err = "#B66467"
-theme.pri = "#8DA3B9"
-
 theme.br = dpi(2)
-
 theme.wall = theme_path .. 'wall.png'
-
-theme.bg = "#121212"
-theme.bg2 = "#181818"
-theme.bg3 = "#1e1e1e"
-
-theme.fg = "#e8e3e3"
-theme.fg2 = "#424242"
 
 theme.fg_focus = theme.fg
 theme.fg_normal = theme.fg .. "40"

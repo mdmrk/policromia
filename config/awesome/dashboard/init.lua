@@ -87,6 +87,26 @@ local buttons = wibox.widget {
   bg = beautiful.bg2,
 }
 
+local themeswitcher = wibox.widget {
+  {
+    {
+      wid.darktheme,
+      wid.lighttheme,
+      wid.cyberpunktheme,
+      spacing = dpi(10),
+      layout = wibox.layout.flex.horizontal,
+    },
+    top = dpi(20),
+    bottom = dpi(20),
+    right = dpi(15),
+    left = dpi(15),
+    widget = wibox.container.margin
+  },
+  shape = help.rrect(beautiful.br),
+  widget = wibox.container.background,
+  bg = beautiful.bg2,
+}
+
 local dashboard = awful.popup {
   widget = {
     {
@@ -99,7 +119,8 @@ local dashboard = awful.popup {
       require("dashboard.play"),
       sliders,
       buttons,
-      spacing = dpi(20),
+      themeswitcher,
+      spacing = dpi(15),
       layout = wibox.layout.fixed.vertical,
     },
     margins = dpi(20),

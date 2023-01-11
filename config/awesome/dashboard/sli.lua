@@ -4,11 +4,12 @@ M.vol = wibox.widget {
   bar_shape = help.rrect(beautiful.br),
   bar_height = dpi(20),
   handle_width = dpi(10),
-  bar_color = '#00000000',
   handle_color = beautiful.pri,
   handle_shape = help.rrect(beautiful.br),
   forced_height = dpi(20),
   forced_width = dpi(175),
+  maximum = 100,
+  bar_color = "#00000000",
   widget = wibox.widget.slider,
 }
 
@@ -62,7 +63,7 @@ M.temp = wibox.widget {
 }
 
 awesome.connect_signal('vol::value', function(mut, val)
-  if mut == 0 then
+  if mut:match("no") then
     M.vol.handle_color = beautiful.pri
     M.snd:get_children_by_id('prg')[1].color = beautiful.pri
   else
