@@ -100,15 +100,7 @@ end)
 awesome.connect_signal('vol::value', function(mut, val)
   if mut:match("no") then
     M.vol.opacity = 1
-    if val > 75 then
-      M.vol.markup = "\u{f028}"
-    elseif val > 50 then
-      M.vol.markup = "\u{f6a8}"
-    elseif val > 0 then
-      M.vol.markup = "\u{f027}"
-    else
-      M.vol.markup = "\u{f026}"
-    end
+    M.vol.markup = "\u{f6a8}"
   else
     M.vol.opacity = 0.25
     M.vol.markup = "\u{f6a9}"

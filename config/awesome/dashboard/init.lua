@@ -18,9 +18,10 @@ local sliders = wibox.widget {
       {
         {
           font = beautiful.icofont,
-          text = '\u{f6a8}',
+          markup = help.fg('\u{f6a8}', beautiful.pri),
           forced_width = dpi(20),
-          widget = wibox.widget.textbox
+          widget = wibox.widget.textbox,
+          align = "center"
         },
         sli.vol,
         spacing = dpi(10),
@@ -29,9 +30,10 @@ local sliders = wibox.widget {
       {
         {
           font = beautiful.icofont,
-          text = '\u{f130}',
+          markup = help.fg('\u{f130}', beautiful.pri),
           forced_width = dpi(20),
           widget = wibox.widget.textbox,
+          align = "center"
         },
         sli.mic,
         spacing = dpi(10),
@@ -59,8 +61,8 @@ local buttons = wibox.widget {
     },
     {
       wid.wal,
-      wid.mic,
-      wid.nig,
+      wid.emp,
+      wid.emp,
       spacing = dpi(10),
       layout = wibox.layout.flex.horizontal,
     },
@@ -110,7 +112,7 @@ local dashboard = awful.popup {
     },
     margins = dpi(20),
     -- forced_height = awful.screen.focused().geometry.height - 20,
-    forced_width = dpi(265),
+    forced_width = dpi(320),
     widget = wibox.container.margin
   },
   shape = help.rrect(beautiful.br),

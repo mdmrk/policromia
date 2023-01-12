@@ -1,4 +1,5 @@
 local signals = require("signals")
+local popup = require("popup")
 
 -- Variables
 local keys = {}
@@ -19,6 +20,7 @@ keys.globalkeys = gears.table.join(
   awful.key({}, 'XF86AudioRaiseVolume', function()
     awful.spawn.with_shell('pactl set-sink-volume @DEFAULT_SINK@ +5%')
     signals.vol()
+    popup.vol()
   end)
   ,
   awful.key({}, 'XF86AudioLowerVolume', function()

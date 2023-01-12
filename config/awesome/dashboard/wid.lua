@@ -10,12 +10,12 @@ M.vol = wibox.widget {
       id = "vol",
       widget = wibox.widget.textbox,
       font = beautiful.icofont,
+      markup = "\u{f6a8}",
       halign = "center",
       align = 'center',
     },
     widget = wibox.container.margin,
-    top = dpi(15),
-    bottom = dpi(15),
+    margins = dpi(5)
   },
   fg = beautiful.pri,
   bg = beautiful.bg3,
@@ -34,8 +34,7 @@ M.mic = wibox.widget {
       align = 'center',
     },
     widget = wibox.container.margin,
-    top = dpi(15),
-    bottom = dpi(15),
+    margins = dpi(5),
   },
   fg = beautiful.pri,
   bg = beautiful.bg3,
@@ -100,6 +99,13 @@ M.wal = wibox.widget {
   widget = wibox.container.background,
 }
 
+M.emp = wibox.widget {
+  fg = on,
+  bg = beautiful.bg2,
+  shape = help.rrect(beautiful.br),
+  widget = wibox.container.background,
+}
+
 M.blu = wibox.widget {
   {
     {
@@ -135,21 +141,9 @@ M.blu:buttons(gears.table.join(
 ))
 
 awesome.connect_signal('vol::value', function(mut, val)
-  local icon
   if mut:match("no") then
-    if val > 75 then
-      icon = "\u{f028}"
-    elseif val > 50 then
-      icon = "\u{f6a8}"
-    elseif val > 0 then
-      icon = "\u{f027}"
-    else
-      icon = "\u{f026}"
-    end
-    M.vol:get_children_by_id("vol")[1].markup = icon
     M.vol.fg = on
   else
-    M.vol:get_children_by_id("vol")[1].markup = "\u{f6a9}"
     M.vol.fg = off
   end
 end)
@@ -223,6 +217,8 @@ local function switch_theme(theme)
   help.write_to_file(beautiful.activethemepath .. "activetheme", beautiful.activetheme)
   awful.spawn.easy_async_with_shell("cp " ..
     beautiful.activethemepath .. beautiful.activetheme .. "/colors.conf ~/.config/kitty/colors.conf")
+  awful.spawn.easy_async_with_shell("cp " ..
+    beautiful.activethemepath .. beautiful.activetheme .. "/colors.rasi ~/.config/rofi/colors.rasi")
   awful.spawn.easy_async_with_shell("pkill -USR1 kitty")
   help.randomize_wallpaper()
   awesome.restart()

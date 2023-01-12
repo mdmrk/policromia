@@ -1,4 +1,5 @@
 -- Importing libraries
+help = require('help')
 gears = require('gears')
 awful = require('awful')
 wibox = require('wibox')
@@ -8,7 +9,6 @@ dpi = beautiful.xresources.apply_dpi
 
 beautiful.init('~/.config/awesome/theme/init.lua')
 keys = require('keys')
-help = require('help')
 dashboard = require("dashboard")
 sig = require('signals')
 

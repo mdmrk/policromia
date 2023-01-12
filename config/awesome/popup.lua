@@ -1,46 +1,48 @@
+local M = {}
+
+local height = 120
 local width = 48
-local height = 100
 
-local vol = wibox({
-  screen = awful.screen.focused(),
-  x = awful.screen.geometry.width,
-  y = (awful.screen.geometry.height / 2) - height / 2,
-  width = dpi(width),
-  height = height,
-  bg = beautiful.bg,
-  shape = gears.shape.rounded_rect,
-  visible = false,
-  ontop = true
-})
-
-local vol_bar = wibox.widget {
-  widget = wibox.widget.progressbar,
-  shape = gears.shape.rounded_bar,
-  color = beautiful.fg,
-  background_color = beautiful.fg,
-  max_value = 100,
-  value = 0
+local vol_sli = wibox.widget {
+  bar_shape = help.rrect(beautiful.br),
+  bar_height = dpi(20),
+  handle_width = 0,
+  forced_height = dpi(20),
+  maximum = 100,
+  bar_color = "#00000000",
+  widget = wibox.widget.slider,
 }
 
-vol:setup {
-  layout = wibox.layout.align.vertical,
+local vol = wibox.widget {
   {
-    wibox.container.margin(
-      vol_bar, dpi(14), dpi(20), dpi(20), dpi(20)
-    ),
-    forced_height = height * 0.75,
-    direction = "east",
-    layout = wibox.container.rotate
+    id = 'prg',
+    max_value = 100,
+    value = vol_sli.value,
+    forced_height = dpi(20),
+    shape = help.rrect(beautiful.br),
+    color = beautiful.pri,
+    visible = false,
+    background_color = beautiful.bg3,
+    widget = wibox.widget.progressbar,
   },
+  vol_sli,
+  layout = wibox.layout.stack,
 }
 
-local function run(popup)
-  popup.visible = true
-  gears.timer {
-    timeout = 4,
-    autostart = true,
-    callback = function()
-      popup.visible = false
-    end
-  }
+local run = gears.timer {
+  timeout = 4,
+  callback = function()
+    vol.visible = false
+  end
+}
+
+M.vol = function()
+  if vol.visible then
+    run:again()
+  else
+    vol.visible = true
+    run:start()
+  end
 end
+
+return M

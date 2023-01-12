@@ -1,13 +1,10 @@
 local M = {}
 
-local sli_width = 170
-
 M.vol_sli = wibox.widget {
   bar_shape = help.rrect(beautiful.br),
   bar_height = dpi(20),
   handle_width = 0,
   forced_height = dpi(20),
-  forced_width = dpi(sli_width),
   maximum = 100,
   bar_color = "#00000000",
   widget = wibox.widget.slider,
@@ -22,7 +19,6 @@ M.vol = wibox.widget {
     shape = help.rrect(beautiful.br),
     color = beautiful.pri,
     background_color = beautiful.bg3,
-    forced_width = dpi(sli_width),
     widget = wibox.widget.progressbar,
   },
   M.vol_sli,
@@ -34,7 +30,6 @@ M.mic_sli = wibox.widget {
   bar_height = dpi(20),
   handle_width = 0,
   forced_height = dpi(20),
-  forced_width = dpi(sli_width),
   maximum = 100,
   bar_color = "#00000000",
   widget = wibox.widget.slider,
@@ -49,7 +44,6 @@ M.mic = wibox.widget {
     shape = help.rrect(beautiful.br),
     color = beautiful.pri,
     background_color = beautiful.bg3,
-    forced_width = dpi(sli_width),
     widget = wibox.widget.progressbar,
   },
   M.mic_sli,
@@ -103,8 +97,8 @@ awesome.connect_signal('vol::value', function(mut, val)
 end)
 
 M.vol_sli:connect_signal('property::value', function(val)
-  sig.set_vol(val.value)
   M.vol:get_children_by_id('prg')[1].value = val.value
+  sig.set_vol(val.value)
 end)
 
 awesome.connect_signal('mic::value', function(mut, val)
