@@ -1,12 +1,12 @@
 # dotfiles
 
 <p align="center">
-  <img src="/assets/tricolor.png" width="500" />
+  <img src="/assets/tricolor.png" width="720" />
 </p>
 
-<p float="left">
-  <img src="/assets/rofi_apps.png" width="200" />
-  <img src="/assets/rofi_emojis.png" width="200" /> 
+<p float="center">
+  <img src="/assets/rofi_apps.png" width="400" />
+  <img src="/assets/rofi_emojis.png" width="400" /> 
 </p>
 
 ```
