@@ -4,8 +4,8 @@ local theme_path = gfs.get_configuration_dir() .. "/theme/"
 
 local theme = {}
 
-theme.activethemepath = theme_path
-local activethemefile = io.open(theme.activethemepath .. "activetheme", "r")
+theme.theme_dir = theme_path
+local activethemefile = io.open(theme.theme_dir .. "activetheme", "r")
 if not activethemefile then
   return
 end
@@ -16,8 +16,9 @@ theme.font = 'JetBrains Mono Medium 10'
 theme.barfont = 'JetBrains Mono Medium 12'
 theme.icofont = 'FontAwesome 6 Pro Solid 12'
 theme.br = dpi(2)
-theme.wall = theme_path .. 'wall.png'
+theme.wall = ""
 
+theme.dashboard_width = dpi(300)
 theme.fg_focus = theme.fg
 theme.fg_normal = theme.fg .. "40"
 theme.fg_minimize = theme.fg2

@@ -34,6 +34,8 @@ keys.globalkeys = gears.table.join(
 
   -- Window management
   awful.key({ 'Mod1' }, 'Tab', function() awful.client.focus.byidx(1) end),
+  awful.key({ mod }, 't', function(c) c.ontop = not c.ontop end,
+    { description = "toggle keep on top", group = "client" }),
   awful.key({ mod }, 'Right', function() awful.tag.incmwfact(0.025) end),
   awful.key({ mod }, 'Left', function() awful.tag.incmwfact(-0.025) end),
   awful.key({ mod }, 'Up', function() awful.client.incwfact(0.05) end),
@@ -48,7 +50,9 @@ keys.globalkeys = gears.table.join(
 
   -- Screenshots
   awful.key({ mod, "Shift" }, 's',
-    function() awful.util.spawn("scrot -s -e 'xclip -selection clipboard -t image/png -i $f'") end)
+    function() awful.util.spawn("scrot -s -e 'xclip -selection clipboard -t image/png -i $f' /home/" ..
+        os.getenv('USER') .. "/Pictures/Screenshots/Screenshot_%Y-%m-%d_%H.%M.%S.png")
+    end)
 )
 
 -- Keyboard Control

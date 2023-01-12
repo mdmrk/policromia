@@ -41,12 +41,10 @@ local position = wibox.widget {
 }
 
 local art = wibox.widget {
-  image = beautiful.wall,
+  image = beautiful.theme_dir .. "player.png",
   resize = true,
-  -- clip_shape = help.rrect(beautiful.br),
   opacity = 0.25,
-  forced_height = dpi(120),
-  forced_width = dpi(120),
+  forced_width = beautiful.dashboard_width / 2,
   widget = wibox.widget.imagebox
 }
 

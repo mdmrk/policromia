@@ -27,18 +27,6 @@ for _, x in pairs(req) do
   require(x)
 end
 
-local function set_wallpaper(s)
-  if beautiful.wall then
-    local wall = beautiful.wall
-    if type(wall) == "function" then
-      wall = wall(s)
-    end
-    gears.wallpaper.maximized(wall, s, true)
-  end
-end
-
-screen.connect_signal("property::geometry", set_wallpaper)
-
 -- Layouts
 awful.layout.layouts = {
   awful.layout.suit.tile,
@@ -47,7 +35,7 @@ awful.layout.layouts = {
 
 -- Virtual desktops/ Tabs
 awful.screen.connect_for_each_screen(function(s)
-  set_wallpaper(s)
+  help.randomize_wallpaper()
   local tagTable = {}
   for i = 1, keys.tags do
     table.insert(tagTable, tostring(i))

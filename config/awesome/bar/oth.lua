@@ -44,11 +44,6 @@ M.search:buttons(gears.table.join(
 
 M.launch:buttons(gears.table.join(
   awful.button({}, 1, function()
-    if not dashboard.visible then
-      M.launch.fg = beautiful.pri
-    else
-      M.launch.fg = beautiful.fg
-    end
     dashboard.toggle()
   end)
 ))

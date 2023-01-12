@@ -66,7 +66,7 @@ local buttons = wibox.widget {
       spacing = dpi(10),
       layout = wibox.layout.flex.horizontal,
     },
-    layout = wibox.layout.flex.vertical,
+    layout = wibox.layout.fixed.vertical,
     spacing = dpi(10),
   },
     widget = wibox.container.margin,
@@ -98,7 +98,6 @@ local dashboard = awful.popup {
   widget = {
     {
       {
-        -- require('dashboard.oth').clock,
         require('dashboard.oth').cal,
         layout = wibox.layout.flex.vertical,
         spacing = dpi(20),
@@ -111,8 +110,7 @@ local dashboard = awful.popup {
       layout = wibox.layout.fixed.vertical,
     },
     margins = dpi(20),
-    -- forced_height = awful.screen.focused().geometry.height - 20,
-    forced_width = dpi(320),
+    forced_width = beautiful.dashboard_width,
     widget = wibox.container.margin
   },
   shape = help.rrect(beautiful.br),

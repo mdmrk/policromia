@@ -25,7 +25,7 @@ end
 
 help.randomize_wallpaper = function()
   awful.spawn.easy_async_with_shell("feh --bg-fill --randomize " ..
-    beautiful.activethemepath .. beautiful.activetheme .. "/wallpapers/*")
+    beautiful.theme_dir .. beautiful.activetheme .. "/wallpapers/*")
 end
 
 return help

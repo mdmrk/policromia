@@ -15,7 +15,8 @@ M.vol = wibox.widget {
       align = 'center',
     },
     widget = wibox.container.margin,
-    margins = dpi(5)
+    top = dpi(15),
+    bottom = dpi(15),
   },
   fg = beautiful.pri,
   bg = beautiful.bg3,
@@ -34,7 +35,8 @@ M.mic = wibox.widget {
       align = 'center',
     },
     widget = wibox.container.margin,
-    margins = dpi(5),
+    top = dpi(15),
+    bottom = dpi(15),
   },
   fg = beautiful.pri,
   bg = beautiful.bg3,
@@ -53,7 +55,8 @@ M.net = wibox.widget {
       align = 'center',
     },
     widget = wibox.container.margin,
-    margins = dpi(5),
+    top = dpi(15),
+    bottom = dpi(15),
   },
   fg = off,
   bg = beautiful.bg3,
@@ -72,7 +75,8 @@ M.nig = wibox.widget {
       align = 'center',
     },
     widget = wibox.container.margin,
-    margins = dpi(5),
+    top = dpi(15),
+    bottom = dpi(15),
   },
   fg = off,
   bg = beautiful.bg3,
@@ -91,7 +95,8 @@ M.wal = wibox.widget {
       align = 'center',
     },
     widget = wibox.container.margin,
-    margins = dpi(5),
+    top = dpi(15),
+    bottom = dpi(15),
   },
   fg = on,
   bg = beautiful.bg3,
@@ -213,14 +218,12 @@ M.wal:buttons(gears.table.join(
 -- Theme switcher
 
 local function switch_theme(theme)
-  beautiful.activetheme = theme
-  help.write_to_file(beautiful.activethemepath .. "activetheme", beautiful.activetheme)
+  help.write_to_file(beautiful.theme_dir .. "activetheme", theme)
   awful.spawn.easy_async_with_shell("cp " ..
-    beautiful.activethemepath .. beautiful.activetheme .. "/colors.conf ~/.config/kitty/colors.conf")
+    beautiful.theme_dir .. theme .. "/colors.conf ~/.config/kitty/colors.conf")
   awful.spawn.easy_async_with_shell("cp " ..
-    beautiful.activethemepath .. beautiful.activetheme .. "/colors.rasi ~/.config/rofi/colors.rasi")
+    beautiful.theme_dir .. theme .. "/colors.rasi ~/.config/rofi/colors.rasi")
   awful.spawn.easy_async_with_shell("pkill -USR1 kitty")
-  help.randomize_wallpaper()
   awesome.restart()
 end
 
