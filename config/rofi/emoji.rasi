@@ -1,0 +1,58 @@
+@import "~/.config/rofi/colors.rasi"
+
+configuration {
+  font: "JetBrains Mono 10";
+}
+
+* {
+  background-color: @bg;
+  text-color: @fg;
+}
+
+window {
+  location: south west;
+  width: 20%;
+  x-offset: 60;
+  y-offset: -10;
+  height: 70%;
+  spacing: 0;
+}
+
+listview {
+  layout: vertical;
+  columns: 4;
+  dynamic: true;
+}
+
+mainbox {
+  padding: 0.75em;
+  spacing: 0.5em;
+  children: [ entry, listview ];
+}
+
+entry {
+  placeholder: "Search...";
+  padding: 0.75em;
+  expand: false;
+}
+
+element {
+  text-color: @al;
+  padding: 15px;
+  border-radius: 3px;
+}
+
+element selected {
+  background-color: @fg;
+}
+
+element-text {
+  vertical-align: 0.5;
+  horizontal-align: 0.5;
+  background-color: inherit;
+  text-color: inherit;
+}
+
+element, element selected, element-text, element-icon {
+  cursor: pointer;
+}
