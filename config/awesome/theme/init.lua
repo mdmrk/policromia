@@ -2,7 +2,6 @@ local help = require("help")
 local gfs = require("gears.filesystem")
 local theme_path = gfs.get_configuration_dir() .. "/theme/"
 
-
 local theme = {}
 
 theme.activethemepath = theme_path

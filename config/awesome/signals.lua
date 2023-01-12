@@ -1,7 +1,8 @@
 local M = {}
 
 local vol = [[ str=$( pactl get-sink-volume @DEFAULT_SINK@ | awk -F' ' '{print $5}' | xargs | tr -d '[%]' ); printf "$(pactl get-sink-mute @DEFAULT_SINK@ | awk -F' ' '{print $2}' | xargs) ${str% *}\n" ]]
-local net = [[ printf "$(nmcli -t connection show --active)~|~$(nmcli radio wifi)" ]]
+local mic = [[ str=$( pactl get-source-volume @DEFAULT_SOURCE@ | awk -F' ' '{print $5}' | xargs | tr -d '[%]' ); printf "$(pactl get-source-mute @DEFAULT_SOURCE@ | awk -F' ' '{print $2}' | xargs) ${str% *}\n" ]]
+local net = [[ printf "$(nmcli networking connectivity check)" ]]
 local blue = [[ bluetoothctl show | grep "Powered:" ]]
 local fs = [[ df -h --output=used,size / | sed 's/G//g' ]]
 local temp = [[ cat /sys/class/thermal/thermal_zone0/temp ]]
@@ -44,21 +45,18 @@ M.vol = function()
   end)
 end
 
-M.net = function()
-  awful.spawn.easy_async_with_shell(net, function(out)
-    local val = gears.string.split(out, "~|~")
-    local v = "down"
-    if val[1] ~= "" then
-      v = "up"
-    end
-    local w = "down"
-    if val[2]:match("enabled") then
-      w = "up"
-    end
-    awesome.emit_signal('net::value', v, w)
+M.mic = function()
+  awful.spawn.easy_async_with_shell(mic, function(out)
+    local val = gears.string.split(out, " ")
+    awesome.emit_signal('mic::value', val[1], tonumber(val[2]))
   end)
 end
 
+M.net = function()
+  awful.spawn.easy_async_with_shell(net, function(out)
+    awesome.emit_signal('net::value', out)
+  end)
+end
 
 M.blu = function()
   awful.spawn.easy_async_with_shell(blue, function(out)
@@ -79,12 +77,10 @@ M.bat = function()
 end
 
 gears.timer {
-  timeout = 5,
+  timeout = 60,
   call_now = true,
   autostart = true,
   callback = function()
-    M.net()
-    M.blu()
     M.mem()
     M.temp()
     M.bat()
@@ -95,9 +91,18 @@ M.set_vol = function(val)
   awful.spawn.with_shell('pactl set-sink-volume @DEFAULT_SINK@ ' .. tonumber(val) .. "%")
 end
 
-M.toggle_mute = function()
+M.set_mic = function(val)
+  awful.spawn.with_shell('pactl set-source-volume @DEFAULT_SOURCE@ ' .. tonumber(val) .. "%")
+end
+
+M.toggle_vol_mute = function()
   awful.spawn.with_shell('pactl set-sink-mute @DEFAULT_SINK@ toggle')
   M.vol()
+end
+
+M.toggle_mic_mute = function()
+  awful.spawn.with_shell('pactl set-source-mute @DEFAULT_SOURCE@ toggle')
+  M.mic()
 end
 
 return M

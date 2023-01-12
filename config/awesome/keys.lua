@@ -27,8 +27,7 @@ keys.globalkeys = gears.table.join(
   end)
   ,
   awful.key({}, "XF86AudioMute", function()
-    awful.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")
-    signals.vol()
+    signals.toggle_vol_mute()
   end),
 
   -- Window management

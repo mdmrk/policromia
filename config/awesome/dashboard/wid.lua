@@ -1,4 +1,5 @@
 local M = {}
+local signals = require("signals")
 
 local on = beautiful.pri
 local off = beautiful.fg2
@@ -9,7 +10,6 @@ M.vol = wibox.widget {
       id = "vol",
       widget = wibox.widget.textbox,
       font = beautiful.icofont,
-      markup = "",
       halign = "center",
       align = 'center',
     },
@@ -23,7 +23,27 @@ M.vol = wibox.widget {
   widget = wibox.container.background,
 }
 
-M.wifi = wibox.widget {
+M.mic = wibox.widget {
+  {
+    {
+      id = "mic",
+      widget = wibox.widget.textbox,
+      font = beautiful.icofont,
+      markup = "\u{f130}",
+      halign = "center",
+      align = 'center',
+    },
+    widget = wibox.container.margin,
+    top = dpi(15),
+    bottom = dpi(15),
+  },
+  fg = beautiful.pri,
+  bg = beautiful.bg3,
+  shape = help.rrect(beautiful.br),
+  widget = wibox.container.background,
+}
+
+M.net = wibox.widget {
   {
     {
       id = 'wifi',
@@ -36,7 +56,7 @@ M.wifi = wibox.widget {
     widget = wibox.container.margin,
     margins = dpi(5),
   },
-  fg = on,
+  fg = off,
   bg = beautiful.bg3,
   shape = help.rrect(beautiful.br),
   widget = wibox.container.background,
@@ -48,14 +68,33 @@ M.nig = wibox.widget {
       id = "nig",
       widget = wibox.widget.textbox,
       font = beautiful.icofont,
-      markup = "",
+      markup = "\u{f06e}",
       halign = "center",
       align = 'center',
     },
     widget = wibox.container.margin,
     margins = dpi(5),
   },
-  fg = beautiful.pri,
+  fg = off,
+  bg = beautiful.bg3,
+  shape = help.rrect(beautiful.br),
+  widget = wibox.container.background,
+}
+
+M.wal = wibox.widget {
+  {
+    {
+      id = "wal",
+      widget = wibox.widget.textbox,
+      font = beautiful.icofont,
+      markup = "\u{f03e}",
+      halign = "center",
+      align = 'center',
+    },
+    widget = wibox.container.margin,
+    margins = dpi(5),
+  },
+  fg = on,
   bg = beautiful.bg3,
   shape = help.rrect(beautiful.br),
   widget = wibox.container.background,
@@ -67,7 +106,7 @@ M.blu = wibox.widget {
       id = 'blu',
       widget = wibox.widget.textbox,
       font = beautiful.icofont,
-      markup = "",
+      markup = "\u{f293}",
       halign = "center",
       align = 'center',
     },
@@ -87,62 +126,70 @@ M.blu:buttons(gears.table.join(
     blue = not blue
     if blue then
       awful.spawn.with_shell("bluetoothctl power on")
-      M.blu:get_children_by_id("blu")[1].markup = ""
       M.blu.fg = on
     else
       awful.spawn.with_shell("bluetoothctl power off")
-      M.blu:get_children_by_id("blu")[1].markup = ""
       M.blu.fg = off
     end
   end)
 ))
 
-local vol = true
-
 awesome.connect_signal('vol::value', function(mut, val)
+  local icon
   if mut:match("no") then
-    M.vol:get_children_by_id("vol")[1].markup = ""
+    if val > 75 then
+      icon = "\u{f028}"
+    elseif val > 50 then
+      icon = "\u{f6a8}"
+    elseif val > 0 then
+      icon = "\u{f027}"
+    else
+      icon = "\u{f026}"
+    end
+    M.vol:get_children_by_id("vol")[1].markup = icon
     M.vol.fg = on
-    vol = true
   else
-    M.vol:get_children_by_id("vol")[1].markup = ""
+    M.vol:get_children_by_id("vol")[1].markup = "\u{f6a9}"
     M.vol.fg = off
-    vol = false
   end
 end)
 
 M.vol:buttons(gears.table.join(
   awful.button({}, 1, function()
-    vol = not vol
-    if vol then
-      awful.spawn.with_shell("pactl set-sink-mute @DEFAULT_SINK@ false")
-    else
-      awful.spawn.with_shell("pactl set-sink-mute @DEFAULT_SINK@ true")
-    end
-    sig.vol()
+    signals.toggle_vol_mute()
   end)
 ))
 
-local wifi = true
-
-awesome.connect_signal("net::value", function(_, stat)
-  if stat:match("up") then
-    M.wifi.fg = on
-    wifi = true
+awesome.connect_signal('mic::value', function(mut, val)
+  if mut:match("no") then
+    M.mic.fg = on
   else
-    M.wifi.fg = off
-    wifi = false
+    M.mic.fg = off
   end
 end)
 
-M.wifi:buttons(gears.table.join(
+M.mic:buttons(gears.table.join(
+  awful.button({}, 1, function()
+    signals.toggle_mic_mute()
+  end)
+))
+
+awesome.connect_signal("net::value", function(status)
+  if status:match("full") or status:match("portal") then
+    M.net.fg = on
+  else
+    M.net.fg = off
+  end
+end)
+
+M.net:buttons(gears.table.join(
   awful.button({}, 1, function()
     wifi = not wifi
     if wifi then
-      M.wifi.fg = on
+      M.net.fg = on
       awful.spawn.with_shell("nmcli radio wifi on")
     else
-      M.wifi.fg = off
+      M.net.fg = off
       awful.spawn.with_shell("nmcli radio wifi off")
     end
   end)
@@ -154,24 +201,30 @@ M.nig:buttons(gears.table.join(
   awful.button({}, 1, function()
     nig = not nig
     if nig then
-      M.nig:get_children_by_id("nig")[1].markup = ""
       M.nig.fg = on
       awful.spawn.with_shell("redshift -x && redshift -O 4000K")
     else
-      M.nig:get_children_by_id("nig")[1].markup = ""
       M.nig.fg = off
       awful.spawn.with_shell("redshift -x")
     end
   end)
 ))
 
+M.wal:buttons(gears.table.join(
+  awful.button({}, 1, function()
+    help.randomize_wallpaper()
+  end)
+))
+
 -- Theme switcher
 
 local function switch_theme(theme)
-  help.write_to_file(beautiful.activethemepath .. "activetheme", theme)
+  beautiful.activetheme = theme
+  help.write_to_file(beautiful.activethemepath .. "activetheme", beautiful.activetheme)
   awful.spawn.easy_async_with_shell("cp " ..
-    beautiful.activethemepath .. theme .. "/colors.conf ~/.config/kitty/colors.conf")
+    beautiful.activethemepath .. beautiful.activetheme .. "/colors.conf ~/.config/kitty/colors.conf")
   awful.spawn.easy_async_with_shell("pkill -USR1 kitty")
+  help.randomize_wallpaper()
   awesome.restart()
 end
 
@@ -186,10 +239,16 @@ M.darktheme = wibox.widget {
       align = 'center',
     },
     widget = wibox.container.margin,
-    margins = dpi(18),
+    top = dpi(15),
+    bottom = dpi(15),
   },
-  fg = on,
-  bg = beautiful.bg3,
+  fg = "#e8e3e3",
+  bg = {
+    type = "linear",
+    from = { 0, 0, 0 },
+    to = { 100, 0, 100 },
+    stops = { { 0, "#121212" }, { 1, "#1e1e1e" } }
+  },
   shape = help.rrect(beautiful.br),
   widget = wibox.container.background,
 }
@@ -213,10 +272,16 @@ M.lighttheme = wibox.widget {
       align = 'center',
     },
     widget = wibox.container.margin,
-    margins = dpi(18),
+    top = dpi(15),
+    bottom = dpi(15),
   },
-  fg = on,
-  bg = beautiful.bg3,
+  fg = "#51576d",
+  bg = {
+    type = "linear",
+    from = { 0, 0, 0 },
+    to = { 100, 0, 100 },
+    stops = { { 0, "#d9def2" }, { 1, "#e5eafe" } }
+  },
   shape = help.rrect(beautiful.br),
   widget = wibox.container.background,
 }
@@ -235,15 +300,21 @@ M.cyberpunktheme = wibox.widget {
       id = 'cyberpunktheme',
       widget = wibox.widget.textbox,
       font = beautiful.icofont,
-      markup = "\u{f64f}",
+      markup = "\u{f54c}",
       halign = "center",
       align = 'center',
     },
     widget = wibox.container.margin,
-    margins = dpi(18),
+    top = dpi(15),
+    bottom = dpi(15),
   },
-  fg = on,
-  bg = beautiful.bg3,
+  fg = "#fb007a",
+  bg = {
+    type = "linear",
+    from = { 0, 0, 0 },
+    to = { 100, 0, 100 },
+    stops = { { 0, "#070219" }, { 1, "#130e25" } }
+  },
   shape = help.rrect(beautiful.br),
   widget = wibox.container.background,
 }

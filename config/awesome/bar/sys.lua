@@ -76,7 +76,14 @@ awesome.connect_signal("bat::value", function(status, charge)
     icon = "\u{f244}"
   end
   if status == "Charging" then
-    icon = help.fg(icon, "#94c74d")
+    icon = help.fg(icon, beautiful.ok)
+    if charge >= 95 then
+      naughty.notify({
+        title = "Battery charged",
+        text = charge .. "% full",
+        timeout = 4
+      })
+    end
   end
   if charge < 15 and status == "Discharging" then
     icon = help.fg(icon, beautiful.err)

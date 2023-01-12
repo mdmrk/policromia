@@ -18,43 +18,25 @@ local sliders = wibox.widget {
       {
         {
           font = beautiful.icofont,
-          text = '',
-          widget = wibox.widget.textbox,
+          text = '\u{f6a8}',
+          forced_width = dpi(20),
+          widget = wibox.widget.textbox
         },
-        sli.snd,
+        sli.vol,
         spacing = dpi(10),
         layout = wibox.layout.fixed.horizontal
       },
       {
         {
           font = beautiful.icofont,
-          text = '',
+          text = '\u{f130}',
+          forced_width = dpi(20),
           widget = wibox.widget.textbox,
         },
-        sli.temp,
+        sli.mic,
         spacing = dpi(10),
         layout = wibox.layout.fixed.horizontal
       },
-      {
-        {
-          font = beautiful.icofont,
-          text = '',
-          widget = wibox.widget.textbox,
-        },
-        sli.mem,
-        spacing = dpi(10),
-        layout = wibox.layout.fixed.horizontal
-      },
-      -- {
-      --   {
-      --     font = beautiful.icofont,
-      --     text = '',
-      --     widget = wibox.widget.textbox,
-      --   },
-      --   sli.fs,
-      --   spacing = dpi(10),
-      --   layout = wibox.layout.fixed.horizontal
-      -- },
       spacing = dpi(10),
       layout = wibox.layout.fixed.vertical,
     },
@@ -67,20 +49,26 @@ local sliders = wibox.widget {
 }
 
 local buttons = wibox.widget {
-  {
+  { {
     {
-      wid.wifi,
-      wid.blu,
       wid.vol,
+      wid.mic,
       wid.nig,
       spacing = dpi(10),
       layout = wibox.layout.flex.horizontal,
     },
-    top = dpi(20),
-    bottom = dpi(20),
-    right = dpi(15),
-    left = dpi(15),
-    widget = wibox.container.margin
+    {
+      wid.wal,
+      wid.mic,
+      wid.nig,
+      spacing = dpi(10),
+      layout = wibox.layout.flex.horizontal,
+    },
+    layout = wibox.layout.flex.vertical,
+    spacing = dpi(10),
+  },
+    widget = wibox.container.margin,
+    margins = dpi(20),
   },
   shape = help.rrect(beautiful.br),
   widget = wibox.container.background,
@@ -96,10 +84,7 @@ local themeswitcher = wibox.widget {
       spacing = dpi(10),
       layout = wibox.layout.flex.horizontal,
     },
-    top = dpi(20),
-    bottom = dpi(20),
-    right = dpi(15),
-    left = dpi(15),
+    margins = dpi(20),
     widget = wibox.container.margin
   },
   shape = help.rrect(beautiful.br),

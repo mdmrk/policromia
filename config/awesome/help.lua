@@ -23,4 +23,9 @@ help.write_to_file = function(path, content)
   activethemefile:close()
 end
 
+help.randomize_wallpaper = function()
+  awful.spawn.easy_async_with_shell("feh --bg-fill --randomize " ..
+    beautiful.activethemepath .. beautiful.activetheme .. "/wallpapers/*")
+end
+
 return help

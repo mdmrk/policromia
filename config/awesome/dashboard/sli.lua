@@ -1,31 +1,58 @@
 local M = {}
 
-M.vol = wibox.widget {
+local sli_width = 170
+
+M.vol_sli = wibox.widget {
   bar_shape = help.rrect(beautiful.br),
   bar_height = dpi(20),
-  handle_width = dpi(10),
-  handle_color = beautiful.pri,
-  handle_shape = help.rrect(beautiful.br),
+  handle_width = 0,
   forced_height = dpi(20),
-  forced_width = dpi(175),
+  forced_width = dpi(sli_width),
   maximum = 100,
   bar_color = "#00000000",
   widget = wibox.widget.slider,
 }
 
-M.snd = wibox.widget {
+M.vol = wibox.widget {
   {
     id = 'prg',
     max_value = 100,
-    value = M.vol.value,
+    value = M.vol_sli.value,
     forced_height = dpi(20),
     shape = help.rrect(beautiful.br),
     color = beautiful.pri,
     background_color = beautiful.bg3,
-    forced_width = dpi(175),
+    forced_width = dpi(sli_width),
     widget = wibox.widget.progressbar,
   },
-  M.vol,
+  M.vol_sli,
+  layout = wibox.layout.stack,
+}
+
+M.mic_sli = wibox.widget {
+  bar_shape = help.rrect(beautiful.br),
+  bar_height = dpi(20),
+  handle_width = 0,
+  forced_height = dpi(20),
+  forced_width = dpi(sli_width),
+  maximum = 100,
+  bar_color = "#00000000",
+  widget = wibox.widget.slider,
+}
+
+M.mic = wibox.widget {
+  {
+    id = 'prg',
+    max_value = 100,
+    value = M.mic_sli.value,
+    forced_height = dpi(20),
+    shape = help.rrect(beautiful.br),
+    color = beautiful.pri,
+    background_color = beautiful.bg3,
+    forced_width = dpi(sli_width),
+    widget = wibox.widget.progressbar,
+  },
+  M.mic_sli,
   layout = wibox.layout.stack,
 }
 
@@ -63,15 +90,38 @@ M.temp = wibox.widget {
 }
 
 awesome.connect_signal('vol::value', function(mut, val)
+  local prg = M.vol:get_children_by_id('prg')[1]
   if mut:match("no") then
-    M.vol.handle_color = beautiful.pri
-    M.snd:get_children_by_id('prg')[1].color = beautiful.pri
+    M.vol_sli.handle_color = beautiful.pri
+    prg.color = beautiful.pri
   else
-    M.vol.handle_color = beautiful.fg2
-    M.snd:get_children_by_id('prg')[1].color = beautiful.fg2
+    M.vol_sli.handle_color = beautiful.fg2
+    prg.color = beautiful.fg2
   end
-  M.vol.value = val
-  M.snd:get_children_by_id('prg')[1].value = val
+  M.vol_sli.value = val
+  prg.value = val
+end)
+
+M.vol_sli:connect_signal('property::value', function(val)
+  sig.set_vol(val.value)
+  M.vol:get_children_by_id('prg')[1].value = val.value
+end)
+
+awesome.connect_signal('mic::value', function(mut, val)
+  if mut:match("no") then
+    M.mic_sli.handle_color = beautiful.pri
+    M.mic:get_children_by_id('prg')[1].color = beautiful.pri
+  else
+    M.mic_sli.handle_color = beautiful.fg2
+    M.mic:get_children_by_id('prg')[1].color = beautiful.fg2
+  end
+  M.mic_sli.value = val
+  M.mic:get_children_by_id('prg')[1].value = val
+end)
+
+M.mic_sli:connect_signal('property::value', function(val)
+  sig.set_mic(val.value)
+  M.mic:get_children_by_id('prg')[1].value = val.value
 end)
 
 awesome.connect_signal('mem::value', function(val, max)
@@ -86,11 +136,6 @@ end)
 awesome.connect_signal('fs::value', function(val, max)
   M.fs.max_value = max
   M.fs.value = val
-end)
-
-M.vol:connect_signal('property::value', function(val)
-  sig.set_vol(val.value)
-  M.snd:get_children_by_id('prg')[1].value = val.value
 end)
 
 return M
