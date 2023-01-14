@@ -19,6 +19,7 @@ theme.br = dpi(2)
 theme.wall = ""
 
 theme.dashboard_width = dpi(300)
+theme.bar_width = dpi(50)
 theme.fg_focus = theme.fg
 theme.fg_normal = theme.fg .. "40"
 theme.fg_minimize = theme.fg2
@@ -65,9 +66,9 @@ theme.notification_icon_size = dpi(80)
 theme.separator_color = theme.fg2
 
 theme.titlebar_minimize_button_focus = gears.color.recolor_image(theme_path .. "circle.svg", theme.ok)
-theme.titlebar_minimize_button_normal = theme_path .. "circle.svg"
+theme.titlebar_minimize_button_normal = gears.color.recolor_image(theme_path .. "circle.svg", theme.fg2)
 
-theme.titlebar_close_button_normal = theme_path .. "circle.svg"
+theme.titlebar_close_button_normal = gears.color.recolor_image(theme_path .. "circle.svg", theme.fg2)
 theme.titlebar_close_button_focus = gears.color.recolor_image(theme_path .. "circle.svg", theme.err)
 
 theme.icon_theme = "Reversal"

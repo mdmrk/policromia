@@ -1,7 +1,7 @@
 local help = require("help")
 local M = {}
 
--- Wifi
+-- Net
 M.net = wibox.widget {
   font = beautiful.icofont,
   align = 'center',
@@ -11,13 +11,6 @@ M.net = wibox.widget {
 
 -- Volume
 M.vol = wibox.widget {
-  font = beautiful.icofont,
-  align = 'center',
-  widget = wibox.widget.textbox,
-}
-
--- Bluethooth
-M.blu = wibox.widget {
   font = beautiful.icofont,
   align = 'center',
   widget = wibox.widget.textbox,
@@ -34,25 +27,14 @@ M.clock = wibox.widget {
 }
 
 -- Battery
-
 M.battery = wibox.widget {
   font = beautiful.icofont,
   align = 'center',
   widget = wibox.widget.textbox,
 }
 
-awesome.connect_signal("blu::value", function(stat)
-  if stat:match("no") then
-    M.blu.opacity = 0.25
-    M.blu.markup = "\u{f293}"
-  else
-    M.blu.opacity = 1
-    M.blu.markup = "\u{f293}"
-  end
-end)
-
-awesome.connect_signal("net::value", function(stat)
-  if stat:match("up") then
+awesome.connect_signal("net::value", function(status)
+  if status == 1 then
     M.net.opacity = 1
   else
     M.net.opacity = 0.25
@@ -84,8 +66,7 @@ awesome.connect_signal("bat::value", function(status, charge)
         timeout = 4
       })
     end
-  end
-  if charge < 15 and status == "Discharging" then
+  elseif charge < 15 and status == "Discharging" then
     icon = help.fg(icon, beautiful.err)
     naughty.notify({
       title = "Low battery",
@@ -98,7 +79,7 @@ awesome.connect_signal("bat::value", function(status, charge)
 end)
 
 awesome.connect_signal('vol::value', function(mut, val)
-  if mut:match("no") then
+  if mut == 0 then
     M.vol.opacity = 1
     M.vol.markup = "\u{f6a8}"
   else

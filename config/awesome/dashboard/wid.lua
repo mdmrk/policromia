@@ -111,42 +111,8 @@ M.emp = wibox.widget {
   widget = wibox.container.background,
 }
 
-M.blu = wibox.widget {
-  {
-    {
-      id = 'blu',
-      widget = wibox.widget.textbox,
-      font = beautiful.icofont,
-      markup = "\u{f293}",
-      halign = "center",
-      align = 'center',
-    },
-    widget = wibox.container.margin,
-    margins = dpi(5),
-  },
-  fg = on,
-  bg = beautiful.bg3,
-  shape = help.rrect(beautiful.br),
-  widget = wibox.container.background,
-}
-
-local blue = true
-
-M.blu:buttons(gears.table.join(
-  awful.button({}, 1, function()
-    blue = not blue
-    if blue then
-      awful.spawn.with_shell("bluetoothctl power on")
-      M.blu.fg = on
-    else
-      awful.spawn.with_shell("bluetoothctl power off")
-      M.blu.fg = off
-    end
-  end)
-))
-
 awesome.connect_signal('vol::value', function(mut, val)
-  if mut:match("no") then
+  if mut == 0 then
     M.vol.fg = on
   else
     M.vol.fg = off
@@ -160,7 +126,7 @@ M.vol:buttons(gears.table.join(
 ))
 
 awesome.connect_signal('mic::value', function(mut, val)
-  if mut:match("no") then
+  if mut == 0 then
     M.mic.fg = on
   else
     M.mic.fg = off
@@ -173,8 +139,11 @@ M.mic:buttons(gears.table.join(
   end)
 ))
 
+local net = true
+
 awesome.connect_signal("net::value", function(status)
-  if status:match("full") or status:match("portal") then
+  net = status == 1 and true or false
+  if net then
     M.net.fg = on
   else
     M.net.fg = off
@@ -183,13 +152,11 @@ end)
 
 M.net:buttons(gears.table.join(
   awful.button({}, 1, function()
-    wifi = not wifi
-    if wifi then
-      M.net.fg = on
-      awful.spawn.with_shell("nmcli radio wifi on")
+    net = not net
+    if net then
+      awful.spawn.easy_async_with_shell("nmcli networking on")
     else
-      M.net.fg = off
-      awful.spawn.with_shell("nmcli radio wifi off")
+      awful.spawn.easy_async_with_shell("nmcli networking off")
     end
   end)
 ))

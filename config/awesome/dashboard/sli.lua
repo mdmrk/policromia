@@ -50,42 +50,9 @@ M.mic = wibox.widget {
   layout = wibox.layout.stack,
 }
 
-M.mem = wibox.widget {
-  max_value = 100,
-  value = 0,
-  forced_height = dpi(20),
-  shape = help.rrect(beautiful.br),
-  color = beautiful.pri,
-  background_color = beautiful.bg3,
-  forced_width = dpi(175),
-  widget = wibox.widget.progressbar,
-}
-
-M.fs = wibox.widget {
-  max_value = 100,
-  value = 0,
-  forced_height = dpi(20),
-  shape = help.rrect(beautiful.br),
-  color = beautiful.pri,
-  background_color = beautiful.bg3,
-  forced_width = dpi(175),
-  widget = wibox.widget.progressbar,
-}
-
-M.temp = wibox.widget {
-  max_value = 80000,
-  value = 0,
-  forced_height = dpi(20),
-  shape = help.rrect(beautiful.br),
-  color = beautiful.pri,
-  background_color = beautiful.bg3,
-  forced_width = dpi(175),
-  widget = wibox.widget.progressbar,
-}
-
 awesome.connect_signal('vol::value', function(mut, val)
   local prg = M.vol:get_children_by_id('prg')[1]
-  if mut:match("no") then
+  if mut == 0 then
     M.vol_sli.handle_color = beautiful.pri
     prg.color = beautiful.pri
   else
@@ -102,7 +69,7 @@ M.vol_sli:connect_signal('property::value', function(val)
 end)
 
 awesome.connect_signal('mic::value', function(mut, val)
-  if mut:match("no") then
+  if mut == 0 then
     M.mic_sli.handle_color = beautiful.pri
     M.mic:get_children_by_id('prg')[1].color = beautiful.pri
   else
@@ -116,20 +83,6 @@ end)
 M.mic_sli:connect_signal('property::value', function(val)
   sig.set_mic(val.value)
   M.mic:get_children_by_id('prg')[1].value = val.value
-end)
-
-awesome.connect_signal('mem::value', function(val, max)
-  M.mem.max_value = max
-  M.mem.value = val
-end)
-
-awesome.connect_signal('temp::value', function(val)
-  M.temp.value = val
-end)
-
-awesome.connect_signal('fs::value', function(val, max)
-  M.fs.max_value = max
-  M.fs.value = val
 end)
 
 return M

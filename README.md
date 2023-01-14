@@ -5,8 +5,8 @@
 </p>
 
 <p align="center">
-  <img src="/assets/rofi_apps.png" width="400" />
-  <img src="/assets/rofi_emojis.png" width="400" /> 
+  <img src="/assets/rofi_apps.png" width="350" />
+  <img src="/assets/rofi_emojis.png" width="350" /> 
 </p>
 
 ```

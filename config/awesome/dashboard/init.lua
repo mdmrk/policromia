@@ -53,15 +53,15 @@ local sliders = wibox.widget {
 local buttons = wibox.widget {
   { {
     {
+      wid.net,
       wid.vol,
       wid.mic,
-      wid.nig,
       spacing = dpi(10),
       layout = wibox.layout.flex.horizontal,
     },
     {
+      wid.nig,
       wid.wal,
-      wid.emp,
       wid.emp,
       spacing = dpi(10),
       layout = wibox.layout.flex.horizontal,
@@ -93,6 +93,7 @@ local themeswitcher = wibox.widget {
   widget = wibox.container.background,
   bg = beautiful.bg2,
 }
+
 
 local dashboard = awful.popup {
   widget = {

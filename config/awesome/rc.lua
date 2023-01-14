@@ -14,10 +14,10 @@ sig = require('signals')
 
 local signals = require("signals")
 local req = {
-  'notif',
+  'notifications',
   'bar',
   'menu',
-  'rule',
+  'rules',
   'titlebar',
   'client',
   'awful.autofocus',
@@ -51,4 +51,3 @@ collectgarbage('setstepmul', 1000)
 -- Signals
 signals.vol()
 signals.mic()
-signals.net()

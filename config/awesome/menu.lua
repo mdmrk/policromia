@@ -1,8 +1,8 @@
 local menu = {
   { "Refresh", awesome.restart },
-  { "Logout", function() awesome.quit() end },
-  { "Restart", function() awful.spawn.with_shell('reboot') end },
-  { "Shutdown", function() awful.spawn.with_shell('shutdown now') end },
+  { "\u{f2f5} Logout", function() awesome.quit() end },
+  { "\u{f2ea} Restart", function() awful.spawn.with_shell('reboot') end },
+  { "\u{f011} Shutdown", function() awful.spawn.with_shell('shutdown now') end },
 }
 
 local main = awful.menu {
@@ -14,7 +14,6 @@ local main = awful.menu {
     { "Terminal", "kitty" },
     { "Browser", "firefox" },
     { "Editor", "kitty -e nvim" },
-    { "Music", "kitty -e ncmpcpp" },
     { "Files", "thunar" },
   }
 }

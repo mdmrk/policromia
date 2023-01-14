@@ -11,7 +11,7 @@ local prev = wibox.widget {
 local next = wibox.widget {
   align = 'center',
   font = beautiful.icofont,
-  text = '\u{f051}',
+  markup = '\u{f051}',
   widget = wibox.widget.textbox,
 }
 
@@ -19,7 +19,7 @@ local play = wibox.widget {
   align = 'center',
   font = beautiful.icofont,
   markup = '\u{f04b}',
-  widget = wibox.widget.textbox,
+  widget = wibox.widget.textbox
 }
 
 play:buttons(gears.table.join(
@@ -88,7 +88,7 @@ local player = wibox.widget {
           prev,
           play,
           next,
-          layout = wibox.layout.flex.horizontal,
+          layout = wibox.layout.flex.horizontal
         },
         spacing = dpi(10),
         layout = wibox.layout.fixed.vertical,
@@ -98,7 +98,7 @@ local player = wibox.widget {
     },
     layout = wibox.layout.stack,
   },
-  forced_height = dpi(120),
+  forced_height = dpi(123),
   shape = help.rrect(beautiful.br),
   bg = beautiful.bg2,
   widget = wibox.container.background,

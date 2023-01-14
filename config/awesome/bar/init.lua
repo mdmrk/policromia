@@ -50,7 +50,7 @@ awful.screen.connect_for_each_screen(function(s)
     position = "left",
     bg = beautiful.bg,
     fg = beautiful.fg,
-    width = dpi(50),
+    width = beautiful.bar_width,
     screen = s
   }):setup {
     layout = wibox.layout.align.vertical,
