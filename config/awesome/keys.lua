@@ -49,9 +49,7 @@ keys.globalkeys = gears.table.join(
 
   -- Screenshots
   awful.key({ mod, "Shift" }, 's',
-    function() awful.util.spawn("scrot -s -e 'xclip -selection clipboard -t image/png -i $f' /home/" ..
-        os.getenv('USER') .. "/Pictures/Screenshots/Screenshot_%Y-%m-%d_%H.%M.%S.png")
-    end)
+    function() help.screenshot() end)
 )
 
 -- Keyboard Control

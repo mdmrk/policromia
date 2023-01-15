@@ -62,7 +62,7 @@ local buttons = wibox.widget {
     {
       wid.nig,
       wid.wal,
-      wid.emp,
+      wid.scr,
       spacing = dpi(10),
       layout = wibox.layout.flex.horizontal,
     },

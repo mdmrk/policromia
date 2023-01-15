@@ -51,3 +51,6 @@ collectgarbage('setstepmul', 1000)
 -- Signals
 signals.vol()
 signals.mic()
+
+-- Autostart
+awful.spawn("picom -b")
