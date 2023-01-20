@@ -1,4 +1,4 @@
-# dotfiles
+# policromia
 
 <p align="center">
   <img src="/assets/tricolor.png" width="800" />
@@ -18,11 +18,25 @@
 - **Editor:** [neovim](https://github.com/neovim/neovim)
 - **Compositor:** [picom](https://github.com/yshui/picom)
 - **Application Launcher:** [rofi](https://github.com/davatorium/rofi)
+- **Emoji List:** [rofi-emoji](https://github.com/Mange/rofi-emoji)
 
 AwesomeWM Modules:
 
 - **[bling](https://github.com/blingcorp/bling)**
   - Adds new layouts, modules, and widgets that try to focus on window management primarily
+
+### Keys
+
+| Shortcut                                           | Action                    |
+| :------------------------------------------------- | :------------------------ |
+| <kbd>Super</kbd> + <kbd>d</kbd>                    | Toggle dashboard          |
+| <kbd>Super</kbd> + <kbd>e</kbd>                    | Open application launcher |
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>e</kbd> | Open emoji list           |
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>s</kbd> | Cropped screenshot        |
+| <kbd>Super</kbd> + <kbd>t</kbd>                    | Toggle on top             |
+| <kbd>Super</kbd> + <kbd>f</kbd>                    | Toggle fullscreen         |
+| <kbd>Super</kbd> + <kbd>Tab</kbd>                  | Toggle floating           |
+| <kbd>Alt</kbd> + <kbd>Tab</kbd>                    | Focus next                |
 
 ## Setup
 
