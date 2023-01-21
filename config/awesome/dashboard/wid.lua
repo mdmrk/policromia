@@ -194,103 +194,45 @@ local function switch_theme(theme)
   awesome.restart()
 end
 
-M.darktheme = wibox.widget {
-  {
+local function create_theme(name, markup, btn_fg, btn_bg1, btn_bg2)
+  local register_name = name .. "theme"
+
+  M[register_name] = wibox.widget {
     {
-      id = 'darktheme',
-      widget = wibox.widget.textbox,
-      font = beautiful.icofont,
-      markup = "\u{f186}",
-      halign = "center",
-      align = 'center',
+      {
+        id = register_name,
+        widget = wibox.widget.textbox,
+        font = beautiful.icofont,
+        markup = markup,
+        halign = "center",
+        align = 'center',
+      },
+      widget = wibox.container.margin,
+      top = dpi(15),
+      bottom = dpi(15),
     },
-    widget = wibox.container.margin,
-    top = dpi(15),
-    bottom = dpi(15),
-  },
-  fg = "#e8e3e3",
-  bg = {
-    type = "linear",
-    from = { 0, 0, 0 },
-    to = { 100, 0, 100 },
-    stops = { { 0, "#121212" }, { 1, "#1e1e1e" } }
-  },
-  shape = help.rrect(beautiful.br),
-  widget = wibox.container.background,
-}
-
-M.darktheme:buttons(gears.table.join(
-  awful.button({}, 1, function()
-    if beautiful.activetheme ~= "dark" then
-      switch_theme("dark")
-    end
-  end)
-))
-
-M.lighttheme = wibox.widget {
-  {
-    {
-      id = 'lighttheme',
-      widget = wibox.widget.textbox,
-      font = beautiful.icofont,
-      markup = "\u{f185}",
-      halign = "center",
-      align = 'center',
+    fg = btn_fg,
+    bg = {
+      type = "linear",
+      from = { 0, 0, 0 },
+      to = { 100, 0, 100 },
+      stops = { { 0, btn_bg1 }, { 1, btn_bg2 } }
     },
-    widget = wibox.container.margin,
-    top = dpi(15),
-    bottom = dpi(15),
-  },
-  fg = "#51576d",
-  bg = {
-    type = "linear",
-    from = { 0, 0, 0 },
-    to = { 100, 0, 100 },
-    stops = { { 0, "#d9def2" }, { 1, "#e5eafe" } }
-  },
-  shape = help.rrect(beautiful.br),
-  widget = wibox.container.background,
-}
+    shape = help.rrect(beautiful.br),
+    widget = wibox.container.background,
+  }
 
-M.lighttheme:buttons(gears.table.join(
-  awful.button({}, 1, function()
-    if beautiful.activetheme ~= "light" then
-      switch_theme("light")
-    end
-  end)
-))
+  M[register_name]:buttons(gears.table.join(
+    awful.button({}, 1, function()
+      if beautiful.activetheme ~= name then
+        switch_theme(name)
+      end
+    end)
+  ))
+end
 
-M.cyberpunktheme = wibox.widget {
-  {
-    {
-      id = 'cyberpunktheme',
-      widget = wibox.widget.textbox,
-      font = beautiful.icofont,
-      markup = "\u{f54c}",
-      halign = "center",
-      align = 'center',
-    },
-    widget = wibox.container.margin,
-    top = dpi(15),
-    bottom = dpi(15),
-  },
-  fg = "#fb007a",
-  bg = {
-    type = "linear",
-    from = { 0, 0, 0 },
-    to = { 100, 0, 100 },
-    stops = { { 0, "#070219" }, { 1, "#130e25" } }
-  },
-  shape = help.rrect(beautiful.br),
-  widget = wibox.container.background,
-}
-
-M.cyberpunktheme:buttons(gears.table.join(
-  awful.button({}, 1, function()
-    if beautiful.activetheme ~= "cyberpunk" then
-      switch_theme("cyberpunk")
-    end
-  end)
-))
+create_theme("dark", "\u{f186}", "#e8e3e3", "#121212", "#1e1e1e")
+create_theme("light", "\u{f185}", "#51576d", "#d9def2", "#e5eafe")
+create_theme("cyberpunk", "\u{f54c}", "#fb007a", "#070219", "#130e25")
 
 return M

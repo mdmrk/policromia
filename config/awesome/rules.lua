@@ -9,8 +9,7 @@ awful.rules.rules = {
       maximized = false,
       keys = keys.clientkeys,
       buttons = keys.clientbuttons,
-      screen = awful.screen.preferred,
-      placement = awful.placement.centered + awful.placement.no_overlap + awful.placement.no_offscreen,
+      screen = awful.screen.preferred
     }
   },
 
@@ -30,6 +29,14 @@ awful.rules.rules = {
       role = { 'pop-up', 'GtkFileChooserDialog' },
       type = { 'dialog' }
     },
+    properties = { floating = true, titlebars_enabled = false }
+  },
+  {
+    rule_any = {
+      role = { 'pop-up', 'GtkFileChooserDialog' },
+      type = { 'dialog' }
+    },
     properties = { floating = true, titlebars_enabled = false, placement = awful.placement.centered }
   },
+
 }

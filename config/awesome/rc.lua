@@ -49,8 +49,16 @@ collectgarbage('setpause', 110)
 collectgarbage('setstepmul', 1000)
 
 -- Signals
-signals.vol()
-signals.mic()
+gears.timer {
+  timeout = 10,
+  single_shot = true,
+  autostart = true,
+  call_now = true,
+  callback = function()
+    signals.vol()
+    signals.mic()
+  end
+}
 
 -- Autostart
-awful.spawn("picom -b")
+awful.spawn("picom -b", false)

@@ -33,7 +33,7 @@ M.bat = function()
 end
 
 gears.timer {
-  timeout = 5,
+  timeout = 30,
   call_now = true,
   autostart = true,
   callback = function()
@@ -43,11 +43,11 @@ gears.timer {
 }
 
 M.set_vol = function(val)
-  awful.spawn.with_shell('pactl set-sink-volume @DEFAULT_SINK@ ' .. tonumber(val) .. "%")
+  awful.spawn.with_shell('pactl set-sink-volume @DEFAULT_SINK@ ' .. val .. "%")
 end
 
 M.set_mic = function(val)
-  awful.spawn.with_shell('pactl set-source-volume @DEFAULT_SOURCE@ ' .. tonumber(val) .. "%")
+  awful.spawn.with_shell('pactl set-source-volume @DEFAULT_SOURCE@ ' .. val .. "%")
 end
 
 M.toggle_vol_mute = function()
