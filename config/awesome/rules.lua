@@ -18,7 +18,7 @@ awful.rules.rules = {
     rule_any = {
       type = { "normal" }
     },
-    properties = { titlebars_enabled = true }
+    properties = { titlebars_enabled = false }
   },
 
   -- Floating, Titlebar exceptions

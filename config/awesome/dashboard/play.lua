@@ -104,25 +104,22 @@ local player = wibox.widget {
   widget = wibox.container.background,
 }
 
--- Get Song Info
 playerctl:connect_signal("metadata", function(_, title, artist, album_path, album, new, player_name)
-  -- Set art widget
   if new then
     art.image = beautiful.wall
   end
   art:set_image(gears.surface.load_uncached(album_path))
-  name:set_markup_silently(help.fg("<b>" .. title .. "</b>", beautiful.pri))
+  name:set_markup_silently(help.fg("<b>" .. title .. "</b>", beautiful.pri, "normal"))
   artist_name:set_markup_silently(artist)
-  -- naughty.notify { title=title, text=artist, icon=album_path }
 end)
 
 playerctl:connect_signal("playback_status", function(_, playing, _)
   if playing then
-    play:set_markup_silently(help.fg("\u{f04c}", beautiful.pri))
+    play:set_markup_silently(help.fg("\u{f04c}", beautiful.pri, "normal"))
     position.color = beautiful.pri
   else
     play:set_markup_silently("\u{f04b}")
-    position.color = beautiful.fg .. "66"
+    position.color = beautiful.fg
   end
 end)
 

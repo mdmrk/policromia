@@ -86,17 +86,12 @@ M.nig = wibox.widget {
 
 M.wal = wibox.widget {
   {
-    {
-      id = "wal",
-      widget = wibox.widget.textbox,
-      font = beautiful.icofont,
-      markup = "\u{f03e}",
-      halign = "center",
-      align = 'center',
-    },
-    widget = wibox.container.margin,
-    top = dpi(15),
-    bottom = dpi(15),
+    id = "wal",
+    widget = wibox.widget.textbox,
+    font = beautiful.icofont,
+    markup = "\u{f03e}",
+    halign = "center",
+    align = 'center',
   },
   fg = on,
   bg = beautiful.bg3,
@@ -109,6 +104,64 @@ M.emp = wibox.widget {
   bg = beautiful.bg2,
   shape = help.rrect(beautiful.br),
   widget = wibox.container.background,
+}
+
+M.ene = wibox.widget {
+  {
+    id = "ene",
+    widget = wibox.widget.textbox,
+    font = beautiful.icofont,
+    markup = "\u{f011}",
+    halign = "center",
+    align = 'center',
+  },
+  fg = beautiful.pri,
+  bg = beautiful.bg3,
+  shape = help.rrect(beautiful.br),
+  widget = wibox.container.background,
+}
+
+M.loc = wibox.widget {
+  {
+    {
+      id = "loc",
+      widget = wibox.widget.textbox,
+      font = beautiful.icofont,
+      markup = "\u{f023}",
+      halign = "center",
+      align = 'center',
+    },
+    widget = wibox.container.margin,
+    top = dpi(15),
+    bottom = dpi(15),
+  },
+  fg = beautiful.pri,
+  bg = beautiful.bg3,
+  shape = help.rrect(beautiful.br),
+  widget = wibox.container.background,
+}
+
+M.bat = wibox.widget {
+  {
+    id               = "prg",
+    max_value        = 100,
+    value            = 0.5,
+    forced_height    = 20,
+    shape            = help.rrect(beautiful.br),
+    color            = beautiful.ok,
+    background_color = beautiful.bg2,
+    widget           = wibox.widget.progressbar,
+  },
+  {
+    {
+      id     = "txt",
+      font   = beautiful.barfontname .. "20",
+      widget = wibox.widget.textbox,
+    },
+    margins = dpi(20),
+    widget = wibox.container.margin,
+  },
+  layout = wibox.layout.stack
 }
 
 awesome.connect_signal('vol::value', function(mut, val)
@@ -138,6 +191,19 @@ M.mic:buttons(gears.table.join(
     signals.toggle_mic_mute()
   end)
 ))
+
+awesome.connect_signal("bat::value", function(status, charge)
+  local prg = M.bat:get_children_by_id("prg")[1]
+
+  prg.value = charge
+  if charge < 20 and status == "Discharging" then
+    prg.color = beautiful.err
+  else
+    prg.color = beautiful.ok
+  end
+  M.bat:get_children_by_id("txt")[1].markup = help.fg((status == "Charging" and "\u{f0e7} " or "") .. charge .. "%",
+    beautiful.bg3, "1000")
+end)
 
 local net = true
 
@@ -187,9 +253,9 @@ M.wal:buttons(gears.table.join(
 local function switch_theme(theme)
   help.write_to_file(beautiful.theme_dir .. "activetheme", theme)
   awful.spawn.easy_async_with_shell("cp " ..
-    beautiful.theme_dir .. theme .. "/colors.conf ~/.config/kitty/colors.conf")
+  beautiful.theme_dir .. theme .. "/colors.conf ~/.config/kitty/colors.conf")
   awful.spawn.easy_async_with_shell("cp " ..
-    beautiful.theme_dir .. theme .. "/colors.rasi ~/.config/rofi/colors.rasi")
+  beautiful.theme_dir .. theme .. "/colors.rasi ~/.config/rofi/colors.rasi")
   awful.spawn.easy_async_with_shell("pkill -USR1 kitty")
   awesome.restart()
 end

@@ -7,6 +7,6 @@ colors.bg = "#070219"
 colors.bg2 = "#0d081f"
 colors.bg3 = "#130e25"
 colors.fg = "#c0caf5"
-colors.fg2 = "#282936"
+colors.fg2 = "#575975"
 
 return colors

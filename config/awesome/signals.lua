@@ -1,9 +1,12 @@
 local M = {}
 
-local vol = [[ str=$( pactl get-sink-volume @DEFAULT_SINK@ | awk -F' ' '{print $5}' | xargs | tr -d '[%]' ); printf "$(pactl get-sink-mute @DEFAULT_SINK@ | awk -F' ' '{print $2}' | xargs) ${str% *}\n" ]]
-local mic = [[ str=$( pactl get-source-volume @DEFAULT_SOURCE@ | awk -F' ' '{print $5}' | xargs | tr -d '[%]' ); printf "$(pactl get-source-mute @DEFAULT_SOURCE@ | awk -F' ' '{print $2}' | xargs) ${str% *}\n" ]]
+local vol =
+[[ str=$( pactl get-sink-volume @DEFAULT_SINK@ | awk -F' ' '{print $5}' | xargs | tr -d '[%]' ); printf "$(pactl get-sink-mute @DEFAULT_SINK@ | awk -F' ' '{print $2}' | xargs) ${str% *}\n" ]]
+local mic =
+[[ str=$( pactl get-source-volume @DEFAULT_SOURCE@ | awk -F' ' '{print $5}' | xargs | tr -d '[%]' ); printf "$(pactl get-source-mute @DEFAULT_SOURCE@ | awk -F' ' '{print $2}' | xargs) ${str% *}\n" ]]
 local net = [[ nmcli -c no networking connectivity check ]]
-local bat = [[ charge=$(acpi | awk -F' ' '{print $4}' | xargs  | tr -d '[%,]'); printf "$(acpi | awk -F' ' '{print $3}' | xargs | tr -d '[,]') ${charge% *}\n" ]]
+local bat =
+[[ charge=$(acpi | awk -F' ' '{print $4}' | xargs | tr -d '[%,]'); printf "$(acpi | awk -F' ' '{print $3}' | xargs | tr -d '[,]') ${charge% *}\n" ]]
 
 M.vol = function()
   awful.spawn.easy_async_with_shell(vol, function(out)

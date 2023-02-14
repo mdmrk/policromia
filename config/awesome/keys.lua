@@ -36,15 +36,16 @@ keys.globalkeys = gears.table.join(
   awful.key({ mod }, 't', function(c) c.ontop = not c.ontop end,
     { description = "toggle keep on top", group = "client" }),
   awful.key({ mod }, 'Right', function() awful.tag.incmwfact(0.025) end),
-  awful.key({ mod }, 'Left', function() awful.tag.incmwfact(-0.025) end),
+  awful.key({ mod }, 'Left', function() awful.tag.incmwfact( -0.025) end),
   awful.key({ mod }, 'Up', function() awful.client.incwfact(0.05) end),
-  awful.key({ mod }, 'Down', function() awful.client.incwfact(-0.05) end),
+  awful.key({ mod }, 'Down', function() awful.client.incwfact( -0.05) end),
 
   -- Applications
   awful.key({ mod }, 'Return', function() awful.util.spawn('kitty') end),
   awful.key({ mod }, 'e', function() awful.util.spawn('rofi -show drun -show-icons -theme apps') end),
   awful.key({ mod, "Shift" }, 'e',
-    function() awful.util.spawn("rofi -modi emoji -show emoji -emoji-format '<span size=\"20pt\">{emoji}</span>' -emoji-mode copy -theme emoji") end)
+    function() awful.util.spawn(
+        "rofi -modi emoji -show emoji -emoji-format '<span size=\"20pt\">{emoji}</span>' -emoji-mode copy -theme emoji") end)
   ,
 
   -- Screenshots
@@ -56,7 +57,10 @@ keys.globalkeys = gears.table.join(
 keys.clientkeys = gears.table.join(
   awful.key({ mod }, 'q', function(c) c:kill() end),
   awful.key({ mod }, 'm', function(c) c.minimized = true end),
-  awful.key({ mod }, 'f', function(c) c.fullscreen = not c.fullscreen; c:raise() end),
+  awful.key({ mod }, 'f', function(c)
+    c.fullscreen = not c.fullscreen;
+    c:raise()
+  end),
   awful.key({ mod }, 'Tab', function() awful.client.floating.toggle() end)
 )
 

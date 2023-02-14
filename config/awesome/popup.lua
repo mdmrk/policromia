@@ -39,7 +39,7 @@ local vol_popup = awful.popup {
       direction = "east"
     },
     {
-      markup = help.fg("\u{f6a8}", beautiful.bg3),
+      markup = help.fg("\u{f6a8}", beautiful.bg3, "normal"),
       font   = beautiful.icofont,
       align  = 'center',
       valign = 'bottom',

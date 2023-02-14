@@ -1,5 +1,7 @@
 local wid = require("dashboard.wid")
 local sli = require("dashboard.sli")
+local top = require('dashboard.oth')
+local play = require("dashboard.play")
 
 local sep = wibox.widget {
   {
@@ -18,8 +20,8 @@ local sliders = wibox.widget {
       {
         {
           font = beautiful.icofont,
-          markup = help.fg('\u{f6a8}', beautiful.pri),
-          forced_width = dpi(20),
+          markup = help.fg('\u{f6a8}', beautiful.pri, "normal"),
+          forced_width = dpi(25),
           widget = wibox.widget.textbox,
           align = "center"
         },
@@ -30,8 +32,8 @@ local sliders = wibox.widget {
       {
         {
           font = beautiful.icofont,
-          markup = help.fg('\u{f130}', beautiful.pri),
-          forced_width = dpi(20),
+          markup = help.fg('\u{f130}', beautiful.pri, "normal"),
+          forced_width = dpi(25),
           widget = wibox.widget.textbox,
           align = "center"
         },
@@ -51,24 +53,21 @@ local sliders = wibox.widget {
 }
 
 local buttons = wibox.widget {
-  { {
+  {
     {
-      wid.net,
-      wid.vol,
-      wid.mic,
+      {
+        wid.net,
+        wid.vol,
+        wid.mic,
+        wid.nig,
+        wid.wal,
+        wid.scr,
+        spacing = dpi(10),
+        layout = wibox.layout.flex.horizontal,
+      },
+      layout = wibox.layout.fixed.vertical,
       spacing = dpi(10),
-      layout = wibox.layout.flex.horizontal,
     },
-    {
-      wid.nig,
-      wid.wal,
-      wid.scr,
-      spacing = dpi(10),
-      layout = wibox.layout.flex.horizontal,
-    },
-    layout = wibox.layout.fixed.vertical,
-    spacing = dpi(10),
-  },
     widget = wibox.container.margin,
     margins = dpi(20),
   },
@@ -86,25 +85,65 @@ local themeswitcher = wibox.widget {
       spacing = dpi(10),
       layout = wibox.layout.flex.horizontal,
     },
-    margins = dpi(20),
+    margins = dpi(0),
     widget = wibox.container.margin
   },
   shape = help.rrect(beautiful.br),
   widget = wibox.container.background,
-  bg = beautiful.bg2,
 }
 
+local profile = {
+  {
+    {
+      image = beautiful.theme_dir .. "profile.png",
+      resize = true,
+      opacity = 0.25,
+      forced_height = dpi(100),
+      clip_shape = help.rrect(dpi(999)),
+      widget = wibox.widget.imagebox
+    },
+    {
+      {
+        markup = help.fg(os.getenv('USER'), beautiful.pri, "normal"),
+        font = beautiful.fontname .. "14",
+        widget = wibox.widget.textbox
+      },
+      layout = wibox.layout.flex.vertical
+    },
+    {
+      {
+        wid.loc,
+        wid.ene,
+        spacing = dpi(0),
+        layout = wibox.layout.fixed.horizontal
+      },
+      margin = dpi(100),
+      widget = wibox.container.margin
+    },
+    spacing = dpi(30),
+    layout = wibox.layout.fixed.horizontal,
+  },
+  margins = { left = dpi(20), right = dpi(20) },
+  widget = wibox.container.margin,
+}
 
 local dashboard = awful.popup {
   widget = {
     {
+      profile,
       {
-        require('dashboard.oth').cal,
-        layout = wibox.layout.flex.vertical,
-        spacing = dpi(20),
+        top.cal,
+        top.wth,
+        spacing = dpi(15),
+        layout = wibox.layout.flex.horizontal,
       },
-      require("dashboard.play"),
-      sliders,
+      play,
+      {
+        sliders,
+        wid.bat,
+        spacing = dpi(15),
+        layout = wibox.layout.flex.horizontal,
+      },
       buttons,
       themeswitcher,
       spacing = dpi(15),
@@ -119,7 +158,8 @@ local dashboard = awful.popup {
   bg = beautiful.bg,
   ontop = true,
   placement = function(c)
-    (awful.placement.bottom_left)(c, { margins = { left = 60, bottom = 10 } })
+    (awful.placement.bottom_left)(c,
+          { margins = { left = beautiful.bar_width + (beautiful.useless_gap * 4), bottom = beautiful.useless_gap * 2 } })
   end,
 }
 

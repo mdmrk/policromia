@@ -15,7 +15,7 @@ local main = wibox.widget {
     top = dpi(10),
     widget = wibox.container.margin
   },
-  shape = help.rrect(beautiful.br),
+  shape = help.rrect(beautiful.bar_br),
   bg = beautiful.bg2,
   widget = wibox.container.background,
 }
@@ -40,7 +40,7 @@ local sys = wibox.widget {
     top = dpi(10),
     widget = wibox.container.margin
   },
-  shape = help.rrect(beautiful.br),
+  shape = help.rrect(beautiful.bar_br),
   bg = beautiful.bg2,
   widget = wibox.container.background,
 }
@@ -51,15 +51,15 @@ awful.screen.connect_for_each_screen(function(s)
     bg = beautiful.bg,
     fg = beautiful.fg,
     width = beautiful.bar_width,
+    height = s.geometry.height - beautiful.useless_gap * 4,
+    margins = { left = beautiful.useless_gap * 2 },
+    shape = help.rrect(beautiful.bar_br),
     screen = s
   }):setup {
     layout = wibox.layout.align.vertical,
     { -- Top
       main,
-      left = dpi(5),
-      right = dpi(5),
-      top = dpi(10),
-      bottom = dpi(5),
+      margins = dpi(5),
       widget = wibox.container.margin,
     },
     { -- Middle
@@ -71,13 +71,10 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.vertical,
           },
           bg = beautiful.bg2,
-          shape = help.rrect(beautiful.br),
+          shape = help.rrect(dpi(100)),
           widget = wibox.container.background
         },
-        top = dpi(5),
-        bottom = dpi(5),
-        left = dpi(5),
-        right = dpi(5),
+        margins = dpi(5),
         widget = wibox.container.margin,
       },
       layout = wibox.layout.flex.vertical,
@@ -87,10 +84,7 @@ awful.screen.connect_for_each_screen(function(s)
         sys,
         layout = wibox.layout.fixed.vertical,
       },
-      top = dpi(5),
-      left = dpi(5),
-      right = dpi(5),
-      bottom = dpi(10),
+      margins = dpi(5),
       widget = wibox.container.margin,
     },
   }
