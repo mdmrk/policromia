@@ -50,7 +50,7 @@ M.mic = wibox.widget {
   layout = wibox.layout.stack,
 }
 
-awesome.connect_signal('vol::value', function(mut, val)
+awesome.connect_signal('vol::value', function(mut, vol)
   local prg = M.vol:get_children_by_id('prg')[1]
   if mut == 0 then
     M.vol_sli.handle_color = beautiful.pri
@@ -59,8 +59,8 @@ awesome.connect_signal('vol::value', function(mut, val)
     M.vol_sli.handle_color = beautiful.fg2
     prg.color = beautiful.fg2
   end
-  M.vol_sli.value = val
-  prg.value = val
+  M.vol_sli.value = vol
+  prg.value = vol
 end)
 
 M.vol_sli:connect_signal('property::value', function(val)
@@ -68,7 +68,7 @@ M.vol_sli:connect_signal('property::value', function(val)
   sig.set_vol(val.value)
 end)
 
-awesome.connect_signal('mic::value', function(mut, val)
+awesome.connect_signal('mic::value', function(mut, vol)
   if mut == 0 then
     M.mic_sli.handle_color = beautiful.pri
     M.mic:get_children_by_id('prg')[1].color = beautiful.pri
@@ -76,8 +76,8 @@ awesome.connect_signal('mic::value', function(mut, val)
     M.mic_sli.handle_color = beautiful.fg2
     M.mic:get_children_by_id('prg')[1].color = beautiful.fg2
   end
-  M.mic_sli.value = val
-  M.mic:get_children_by_id('prg')[1].value = val
+  M.mic_sli.value = vol
+  M.mic:get_children_by_id('prg')[1].value = vol
 end)
 
 M.mic_sli:connect_signal('property::value', function(val)

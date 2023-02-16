@@ -1,5 +1,4 @@
 local signals = require("signals")
-local popup = require("popup")
 
 -- Variables
 local keys = {}
@@ -44,8 +43,10 @@ keys.globalkeys = gears.table.join(
   awful.key({ mod }, 'Return', function() awful.util.spawn('kitty') end),
   awful.key({ mod }, 'e', function() awful.util.spawn('rofi -show drun -show-icons -theme apps') end),
   awful.key({ mod, "Shift" }, 'e',
-    function() awful.util.spawn(
-        "rofi -modi emoji -show emoji -emoji-format '<span size=\"20pt\">{emoji}</span>' -emoji-mode copy -theme emoji") end)
+    function()
+      awful.util.spawn(
+        "rofi -modi emoji -show emoji -emoji-format '<span size=\"20pt\">{emoji}</span>' -emoji-mode copy -theme emoji")
+    end)
   ,
 
   -- Screenshots
@@ -74,7 +75,6 @@ keys.clientbuttons = gears.table.join(
 
 for i = 1, tags do
   keys.globalkeys = gears.table.join(keys.globalkeys,
-
     -- View tag
     awful.key({ mod }, '#' .. i + 9,
       function()

@@ -3,15 +3,22 @@ local M = {}
 
 -- Net
 M.net = wibox.widget {
-  font = beautiful.icofont,
+  font = beautiful.icofontname .. "12",
   align = 'center',
-  markup = "\u{f0ac}",
+  markup = "\u{f1eb}",
   widget = wibox.widget.textbox,
 }
 
 -- Volume
 M.vol = wibox.widget {
-  font = beautiful.icofont,
+  font = beautiful.icofontname .. "12",
+  align = 'center',
+  widget = wibox.widget.textbox,
+}
+
+-- Battery
+M.battery = wibox.widget {
+  font = beautiful.icofontname .. "12",
   align = 'center',
   widget = wibox.widget.textbox,
 }
@@ -19,18 +26,11 @@ M.vol = wibox.widget {
 -- Clock
 M.clock = wibox.widget {
   font = beautiful.barfont,
-  format = "%H\n%M",
+  format = help.fg("%H\n%M", beautiful.fg, "bold"),
   refresh = 1,
   align = 'center',
   valign = 'center',
   widget = wibox.widget.textclock
-}
-
--- Battery
-M.battery = wibox.widget {
-  font = beautiful.icofont,
-  align = 'center',
-  widget = wibox.widget.textbox,
 }
 
 awesome.connect_signal("net::value", function(status)
@@ -57,7 +57,7 @@ awesome.connect_signal("bat::value", function(status, charge)
   end
   if status == "Charging" then
     icon = help.fg(icon, beautiful.ok, "normal")
-    if charge >= 95 then
+    if charge >= 90 then
       naughty.notify({
         title = "Battery charged",
         text = charge .. "% full",
@@ -76,7 +76,7 @@ awesome.connect_signal("bat::value", function(status, charge)
   M.battery.markup = icon
 end)
 
-awesome.connect_signal('vol::value', function(mut, val)
+awesome.connect_signal('vol::value', function(mut, vol)
   if mut == 0 then
     M.vol.opacity = 1
     M.vol.markup = "\u{f6a8}"

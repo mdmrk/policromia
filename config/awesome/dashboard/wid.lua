@@ -50,7 +50,7 @@ M.net = wibox.widget {
       id = 'wifi',
       widget = wibox.widget.textbox,
       font = beautiful.icofont,
-      markup = "\u{f0ac}",
+      markup = "\u{f1eb}",
       halign = "center",
       align = 'center',
     },
@@ -106,41 +106,6 @@ M.emp = wibox.widget {
   widget = wibox.container.background,
 }
 
-M.ene = wibox.widget {
-  {
-    id = "ene",
-    widget = wibox.widget.textbox,
-    font = beautiful.icofont,
-    markup = "\u{f011}",
-    halign = "center",
-    align = 'center',
-  },
-  fg = beautiful.pri,
-  bg = beautiful.bg3,
-  shape = help.rrect(beautiful.br),
-  widget = wibox.container.background,
-}
-
-M.loc = wibox.widget {
-  {
-    {
-      id = "loc",
-      widget = wibox.widget.textbox,
-      font = beautiful.icofont,
-      markup = "\u{f023}",
-      halign = "center",
-      align = 'center',
-    },
-    widget = wibox.container.margin,
-    top = dpi(15),
-    bottom = dpi(15),
-  },
-  fg = beautiful.pri,
-  bg = beautiful.bg3,
-  shape = help.rrect(beautiful.br),
-  widget = wibox.container.background,
-}
-
 M.bat = wibox.widget {
   {
     id               = "prg",
@@ -164,7 +129,7 @@ M.bat = wibox.widget {
   layout = wibox.layout.stack
 }
 
-awesome.connect_signal('vol::value', function(mut, val)
+awesome.connect_signal('vol::value', function(mut, vol)
   if mut == 0 then
     M.vol.fg = on
   else
@@ -178,7 +143,7 @@ M.vol:buttons(gears.table.join(
   end)
 ))
 
-awesome.connect_signal('mic::value', function(mut, val)
+awesome.connect_signal('mic::value', function(mut, vol)
   if mut == 0 then
     M.mic.fg = on
   else

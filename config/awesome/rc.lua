@@ -6,12 +6,10 @@ wibox = require('wibox')
 naughty = require("naughty")
 beautiful = require('beautiful')
 dpi = beautiful.xresources.apply_dpi
-
 beautiful.init('~/.config/awesome/theme/init.lua')
 keys = require('keys')
 dashboard = require("dashboard")
 sig = require('signals')
-
 local signals = require("signals")
 local req = {
   'notifications',
@@ -22,6 +20,7 @@ local req = {
   'client',
   'awful.autofocus',
 }
+require("popup")
 
 for _, x in pairs(req) do
   require(x)
@@ -53,7 +52,6 @@ gears.timer {
   timeout = 10,
   single_shot = true,
   autostart = true,
-  call_now = true,
   callback = function()
     signals.vol()
     signals.mic()

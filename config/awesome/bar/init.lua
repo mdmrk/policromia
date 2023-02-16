@@ -3,46 +3,38 @@ local oth = require("bar.oth")
 
 local main = wibox.widget {
   {
-    {
-      oth.launch,
-      oth.search,
-      spacing = dpi(20),
-      layout = wibox.layout.fixed.vertical,
-    },
-    left = dpi(2),
-    right = dpi(2),
-    bottom = dpi(10),
-    top = dpi(10),
-    widget = wibox.container.margin
+    oth.launch,
+    oth.search,
+    spacing = dpi(20),
+    layout = wibox.layout.fixed.vertical,
   },
-  shape = help.rrect(beautiful.bar_br),
-  bg = beautiful.bg2,
-  widget = wibox.container.background,
+  widget = wibox.container.margin,
+  margins = { top = dpi(20) },
 }
+
+local tags = function(s)
+  return wibox.widget {
+    require("bar.tag")(s),
+    widget = wibox.container.margin,
+    margins = dpi(18)
+  }
+end
 
 local sys = wibox.widget {
   {
     {
-      {
-        sys.net,
-        sys.vol,
-        sys.battery,
-        spacing = dpi(20),
-        layout = wibox.layout.fixed.vertical,
-      },
-      oth.sep,
-      sys.clock,
+      sys.net,
+      sys.vol,
+      sys.battery,
+      spacing = dpi(20),
       layout = wibox.layout.fixed.vertical,
     },
-    left = dpi(2),
-    right = dpi(2),
-    bottom = dpi(10),
-    top = dpi(10),
-    widget = wibox.container.margin
+    oth.sep,
+    sys.clock,
+    layout = wibox.layout.fixed.vertical,
   },
-  shape = help.rrect(beautiful.bar_br),
-  bg = beautiful.bg2,
-  widget = wibox.container.background,
+  widget = wibox.container.margin,
+  margins = { bottom = dpi(20) },
 }
 
 awful.screen.connect_for_each_screen(function(s)
@@ -56,36 +48,10 @@ awful.screen.connect_for_each_screen(function(s)
     shape = help.rrect(beautiful.bar_br),
     screen = s
   }):setup {
+    main,
+    tags(s),
+    sys,
+    expand = "none",
     layout = wibox.layout.align.vertical,
-    { -- Top
-      main,
-      margins = dpi(5),
-      widget = wibox.container.margin,
-    },
-    { -- Middle
-      {
-        {
-          {
-            require('bar.tag')(s),
-            require('bar.task')(s),
-            layout = wibox.layout.fixed.vertical,
-          },
-          bg = beautiful.bg2,
-          shape = help.rrect(dpi(100)),
-          widget = wibox.container.background
-        },
-        margins = dpi(5),
-        widget = wibox.container.margin,
-      },
-      layout = wibox.layout.flex.vertical,
-    },
-    { -- Bottom
-      {
-        sys,
-        layout = wibox.layout.fixed.vertical,
-      },
-      margins = dpi(5),
-      widget = wibox.container.margin,
-    },
   }
 end)

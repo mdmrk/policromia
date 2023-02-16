@@ -73,9 +73,10 @@ theme.separator_color                 = theme.fg2
 
 theme.titlebar_minimize_button_focus  = gears.color.recolor_image(theme_path .. "circle.svg", theme.ok)
 theme.titlebar_minimize_button_normal = gears.color.recolor_image(theme_path .. "circle.svg", theme.fg2)
-
 theme.titlebar_close_button_normal    = gears.color.recolor_image(theme_path .. "circle.svg", theme.fg2)
 theme.titlebar_close_button_focus     = gears.color.recolor_image(theme_path .. "circle.svg", theme.err)
+theme.tag                             = theme_path .. "tag.svg"
+theme.tag_sel                         = theme_path .. "tag_sel.svg"
 
 theme.playerctl_player                = { "mpd", "%any" }
 

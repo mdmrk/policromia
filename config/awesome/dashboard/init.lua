@@ -91,46 +91,10 @@ local themeswitcher = wibox.widget {
   shape = help.rrect(beautiful.br),
   widget = wibox.container.background,
 }
-
-local profile = {
-  {
-    {
-      image = beautiful.theme_dir .. "profile.png",
-      resize = true,
-      opacity = 0.25,
-      forced_height = dpi(100),
-      clip_shape = help.rrect(dpi(999)),
-      widget = wibox.widget.imagebox
-    },
-    {
-      {
-        markup = help.fg(os.getenv('USER'), beautiful.pri, "normal"),
-        font = beautiful.fontname .. "14",
-        widget = wibox.widget.textbox
-      },
-      layout = wibox.layout.flex.vertical
-    },
-    {
-      {
-        wid.loc,
-        wid.ene,
-        spacing = dpi(0),
-        layout = wibox.layout.fixed.horizontal
-      },
-      margin = dpi(100),
-      widget = wibox.container.margin
-    },
-    spacing = dpi(30),
-    layout = wibox.layout.fixed.horizontal,
-  },
-  margins = { left = dpi(20), right = dpi(20) },
-  widget = wibox.container.margin,
-}
-
 local dashboard = awful.popup {
   widget = {
     {
-      profile,
+      top.ses,
       {
         top.cal,
         top.wth,

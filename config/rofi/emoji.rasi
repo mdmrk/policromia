@@ -12,7 +12,7 @@ configuration {
 window {
   location: south west;
   width: 20%;
-  x-offset: 60;
+  x-offset: 70;
   y-offset: -10;
   height: 70%;
   spacing: 0;
@@ -47,10 +47,10 @@ element selected {
 }
 
 element-text {
-  vertical-align: 0.5;
-  horizontal-align: 0.5;
   background-color: inherit;
   text-color: inherit;
+  vertical-align: 0.5;
+  horizontal-align: 0.5;
 }
 
 element, element selected, element-text, element-icon {
