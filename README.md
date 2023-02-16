@@ -1,9 +1,9 @@
 # policromia
 
 <p align="center">
-  <img src="cyberpunk.png" width="400" />
-  <img src="dark.png" width="400" />
-  <img src="light.png" width="400" />
+  <img src="assets/cyberpunk.png" width="400" />
+  <img src="assets/dark.png" width="400" />
+  <img src="assets/light.png" width="400" />
 </p>
 
 ## Details
