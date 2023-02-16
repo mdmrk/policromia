@@ -38,6 +38,14 @@ keys.globalkeys = gears.table.join(
   awful.key({ mod }, 'Left', function() awful.tag.incmwfact( -0.025) end),
   awful.key({ mod }, 'Up', function() awful.client.incwfact(0.05) end),
   awful.key({ mod }, 'Down', function() awful.client.incwfact( -0.05) end),
+  awful.key({ mod, "Shift" }, "j", function() awful.client.swap.byidx(1) end,
+    { description = "swap with next client by index", group = "client" }),
+  awful.key({ mod, "Shift" }, "k", function() awful.client.swap.byidx( -1) end,
+    { description = "swap with previous client by index", group = "client" }),
+  awful.key({ mod, "Control" }, "j", function() awful.screen.focus_relative(1) end,
+    { description = "focus the next screen", group = "screen" }),
+  awful.key({ mod, "Control" }, "k", function() awful.screen.focus_relative( -1) end,
+    { description = "focus the previous screen", group = "screen" }),
 
   -- Applications
   awful.key({ mod }, 'Return', function() awful.util.spawn('kitty') end),
