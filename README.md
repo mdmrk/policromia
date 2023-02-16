@@ -1,12 +1,9 @@
 # policromia
 
 <p align="center">
-  <img src="/assets/tricolor.png" width="800" />
-</p>
-
-<p align="center">
-  <img src="/assets/rofi_apps.png" width="350" />
-  <img src="/assets/rofi_emojis.png" width="350" /> 
+  <img src="cyberpunk.png" width="400" />
+  <img src="dark.png" width="400" />
+  <img src="light.png" width="400" />
 </p>
 
 ## Details
@@ -45,7 +42,7 @@ Using [paru](https://github.com/Morganamilo/paru) as the AUR helper
 ### Dependencies
 
 ```
-paru -S awesome-git picom-git zsh redshift thunar kitty rofi rofi-emoji xclip scrot gvfs ttf-jetbrains-mono noto-fonts noto-fonts-cjk inetutils networkmanager lxappearance materia-gtk-theme papirus-icon-theme lsd playerctl brightnessctl pipewire pipewire-alsa pipewire-pulse alsa-utils acpi
+paru -S awesome-git picom-git zsh redshift thunar kitty rofi rofi-emoji xclip scrot gvfs ttf-jetbrains-mono noto-fonts noto-fonts-cjk networkmanager betterlockscreen lxappearance materia-gtk-theme papirus-icon-theme lsd playerctl brightnessctl pipewire pipewire-alsa pipewire-pulse alsa-utils acpi
 ```
 
 ### Get the repo

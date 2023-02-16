@@ -15,6 +15,7 @@ window {
   x-offset: 70;
   y-offset: -10;
   height: 70%;
+  border-radius:               10px;
   spacing: 0;
 }
 

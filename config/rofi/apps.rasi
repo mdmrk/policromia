@@ -43,8 +43,8 @@ mainbox {
     margin:                      0px;
     padding:                     20px;
     border:                      0px solid;
-    border-radius:               10px;
     border-color:                @selected;
+    border-radius:               10px;
     background-color:            transparent;
     children:                    [ "inputbar", "listview" ];
 }
