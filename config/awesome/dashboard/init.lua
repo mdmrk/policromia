@@ -91,6 +91,12 @@ local themeswitcher = wibox.widget {
   shape = help.rrect(beautiful.br),
   widget = wibox.container.background,
 }
+
+local tray = wibox.widget {
+  forced_height = dpi(40),
+  widget = wibox.widget.systray
+}
+
 local dashboard = awful.popup {
   widget = {
     {
@@ -110,6 +116,7 @@ local dashboard = awful.popup {
       },
       buttons,
       themeswitcher,
+      tray,
       spacing = dpi(15),
       layout = wibox.layout.fixed.vertical,
     },

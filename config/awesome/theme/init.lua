@@ -64,6 +64,9 @@ theme.menu_submenu_icon               = theme_path .. "menu.svg"
 
 theme.tasklist_plain_task_name        = true
 
+theme.bg_systray                      = theme.bg
+theme.systray_icon_spacing            = dpi(10)
+
 theme.notification_bg                 = theme.bg
 theme.notification_fg                 = theme.fg
 theme.notification_width              = dpi(225)

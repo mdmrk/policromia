@@ -41,7 +41,7 @@ M.ses = wibox.widget {
       {
         image = beautiful.theme_dir .. "profile.png",
         resize = true,
-        opacity = 0.25,
+        opacity = 0.8,
         forced_height = dpi(100),
         clip_shape = gears.shape.circle,
         widget = wibox.widget.imagebox
