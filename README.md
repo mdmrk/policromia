@@ -57,7 +57,7 @@ cd dotfiles
 ```
 cp -r config/awesome/* ~/.config/awesome
 cp -r config/picom/* ~/.config/picom
-cp -r config/fontconfig/* ~/.config/fontconfig
+cp -r config/fontconfig/* ~/.config/fontconfig/conf.d
 cp -r config/kitty/* ~/.config/kitty
 cp -r config/rofi/* ~/.config/rofi
 cp -r fonts/* ~/.local/share/fonts
