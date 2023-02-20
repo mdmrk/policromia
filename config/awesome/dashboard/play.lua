@@ -98,7 +98,7 @@ local player = wibox.widget {
     },
     layout = wibox.layout.stack,
   },
-  forced_height = dpi(123),
+  forced_height = dpi(124),
   shape = help.rrect(beautiful.br),
   bg = beautiful.bg2,
   widget = wibox.container.background,

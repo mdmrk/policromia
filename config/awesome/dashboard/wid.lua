@@ -111,17 +111,25 @@ M.bat = wibox.widget {
     id               = "prg",
     max_value        = 100,
     value            = 0.5,
-    forced_height    = 20,
     shape            = help.rrect(beautiful.br),
-    color            = beautiful.ok,
     background_color = beautiful.bg2,
+    forced_height    = 20,
     widget           = wibox.widget.progressbar,
   },
   {
     {
-      id     = "txt",
-      font   = beautiful.barfontname .. "20",
-      widget = wibox.widget.textbox,
+      {
+        id     = "ico",
+        font   = beautiful.icofont,
+        widget = wibox.widget.textbox,
+      },
+      {
+        id     = "txt",
+        font   = beautiful.barfontname .. "20",
+        widget = wibox.widget.textbox,
+      },
+      layout = wibox.layout.fixed.horizontal,
+      spacing = dpi(15),
     },
     margins = dpi(20),
     widget = wibox.container.margin,
@@ -166,7 +174,13 @@ awesome.connect_signal("bat::value", function(status, charge)
   else
     prg.color = beautiful.ok
   end
-  M.bat:get_children_by_id("txt")[1].markup = help.fg((status == "Charging" and "\u{f0e7} " or "") .. charge .. "%",
+  if status == "Charging" then
+    M.bat:get_children_by_id("ico")[1].markup = help.fg('\u{f0e7}',
+      beautiful.bg3, "1000")
+  else
+    M.bat:get_children_by_id("ico")[1].markup = ''
+  end
+  M.bat:get_children_by_id("txt")[1].markup = help.fg(charge .. "%",
     beautiful.bg3, "1000")
 end)
 

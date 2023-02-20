@@ -1,7 +1,7 @@
 @import "~/.config/rofi/colors.rasi"
 
 configuration {
-  font: "JetBrains Mono 10";
+  font: "JetBrainsMono Nerd Font Bold 10";
 }
 
 * {
@@ -32,7 +32,7 @@ mainbox {
 }
 
 entry {
-  placeholder: "Search...";
+  placeholder: "Search";
   padding: 0.75em;
   expand: false;
 }

@@ -12,8 +12,8 @@ end
 theme.activetheme = activethemefile:read()
 activethemefile:close()
 help.merge(theme, require("theme." .. theme.activetheme .. ".colors"))
-theme.fontname                        = 'JetBrains Mono Medium' .. " "
-theme.barfontname                     = 'JetBrains Mono Medium' .. " "
+theme.fontname                        = 'JetBrainsMono Nerd Font' .. " "
+theme.barfontname                     = 'JetBrainsMono Nerd Font' .. " "
 theme.icofontname                     = 'FontAwesome 6 Pro Solid' .. " "
 theme.fontsize                        = '10'
 theme.barfontsize                     = '12'
