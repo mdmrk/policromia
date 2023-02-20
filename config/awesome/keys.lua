@@ -53,7 +53,7 @@ keys.globalkeys = gears.table.join(
   awful.key({ mod, "Shift" }, 'e',
     function()
       awful.util.spawn(
-        "rofi -modi emoji -show emoji -emoji-format '<span size=\"20pt\">{emoji}</span>' -emoji-mode copy -theme emoji")
+        "rofi -modi emoji -show emoji -emoji-format '<span size=\"xx-large\">{emoji}</span>' -emoji-mode copy -theme emoji")
     end)
   ,
 

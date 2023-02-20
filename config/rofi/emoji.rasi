@@ -1,7 +1,10 @@
 @import "~/.config/rofi/colors.rasi"
 
 configuration {
+  modi:                       "drun";
   font: "JetBrainsMono Nerd Font Bold 10";
+  display-drun:               "";
+	drun-display-format:        "{name}";
 }
 
 * {
@@ -11,7 +14,7 @@ configuration {
 
 window {
   location: south west;
-  width: 20%;
+  width: 350px;
   x-offset: 70;
   y-offset: -10;
   height: 70%;
@@ -28,19 +31,58 @@ listview {
 mainbox {
   padding: 0.75em;
   spacing: 0.5em;
-  children: [ entry, listview ];
+  children: [ inputbar, listview ];
+}
+/*****----- Inputbar -----*****/
+inputbar {
+    enabled:                     true;
+    spacing:                     10px;
+    margin:                      0px;
+    padding:                     15px;
+    border:                      0px solid;
+    border-radius:               10px;
+    border-color:                @selected;
+    background-color:            @fg;
+    text-color:                  @bg;
+    children:                    [ "entry" ];
 }
 
+prompt {
+    enabled:                     true;
+    background-color:            transparent;
+    text-color:                  inherit;
+    font: "JetBrainsMono Nerd Font Medium 10";
+}
+
+textbox-prompt-colon {
+    enabled:                     true;
+    expand:                      false;
+    str:                         "::";
+    background-color:            transparent;
+    text-color:                  inherit;
+}
 entry {
-  placeholder: "Search";
-  padding: 0.75em;
-  expand: false;
+    enabled:                     true;
+    background-color:            transparent;
+    text-color:                  inherit;
+    cursor:                      text;
+    placeholder:                 "Search";
+    placeholder-color:           inherit;
+    font: "JetBrainsMono Nerd Font Bold 10";
 }
 
 element {
-  text-color: @al;
-  padding: 15px;
-  border-radius: 3px;
+  enabled:                     true;
+    spacing:                     15px;
+    margin:                      0px;
+    padding:                     20px 10px;
+    border:                      0px solid;
+    border-radius:               10px;
+    border-color:                @selected;
+    background-color:            transparent;
+    text-color:                  @fg;
+    orientation:                 vertical;
+    cursor:                      pointer;
 }
 
 element selected {
@@ -48,10 +90,12 @@ element selected {
 }
 
 element-text {
-  background-color: inherit;
-  text-color: inherit;
-  vertical-align: 0.5;
-  horizontal-align: 0.5;
+    background-color:            transparent;
+    text-color:                  inherit;
+    highlight:                   inherit;
+    cursor:                      inherit;
+    vertical-align:              0.5;
+    horizontal-align:            0.5;
 }
 
 element, element selected, element-text, element-icon {
