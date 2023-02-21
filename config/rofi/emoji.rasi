@@ -3,7 +3,6 @@
 configuration {
   modi:                       "drun";
   font: "JetBrainsMono Nerd Font Bold 10";
-  display-drun:               "";
 	drun-display-format:        "{name}";
 }
 
@@ -15,10 +14,9 @@ configuration {
 window {
   location: south west;
   width: 350px;
-  x-offset: 70;
-  y-offset: -10;
+  x-offset: 66;
+  y-offset: -8;
   height: 70%;
-  border-radius:               10px;
   spacing: 0;
 }
 
@@ -40,8 +38,8 @@ inputbar {
     margin:                      0px;
     padding:                     15px;
     border:                      0px solid;
-    border-radius:               10px;
     border-color:                @selected;
+    border-radius:               10px;
     background-color:            @fg;
     text-color:                  @bg;
     children:                    [ "entry" ];

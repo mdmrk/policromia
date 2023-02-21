@@ -21,12 +21,12 @@ theme.icofontsize                     = '14'
 theme.font                            = theme.fontname .. theme.fontsize
 theme.barfont                         = theme.barfontname .. theme.barfontsize
 theme.icofont                         = theme.icofontname .. theme.icofontsize
-theme.br                              = dpi(10)
+theme.br                              = dpi(12)
+theme.bar_br                          = dpi(20)
 theme.wall                            = ""
 
 theme.dashboard_width                 = dpi(500)
 theme.bar_width                       = dpi(50)
-theme.bar_br                          = dpi(20)
 theme.fg_focus                        = theme.fg
 theme.fg_normal                       = theme.fg .. "40"
 theme.fg_minimize                     = theme.fg2
