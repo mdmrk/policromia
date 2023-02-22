@@ -9,12 +9,12 @@ local run_comm = function(comm)
     end
 end
 
-local create_button = function(icon, comm, requires_confirmation)
+local create_button = function(icon, comm, act, requires_confirmation)
     local button = wibox.widget {
         {
             {
                 widget = wibox.widget.textbox,
-                font = beautiful.icofontname .. "18",
+                font = beautiful.icofontname .. "14",
                 markup = help.fg(icon, beautiful.fg, "normal"),
                 halign = "center",
                 align = 'center',
@@ -24,12 +24,13 @@ local create_button = function(icon, comm, requires_confirmation)
         },
         bg = beautiful.bg2,
         buttons = { awful.button({}, 1, function()
-            if not requires_confirmation then
-                run_comm(comm)
-            else
+            if requires_confirmation then
+                confirmation:get_children_by_id('txt')[1].markup = help.fg(act, beautiful.fg, "bold")
                 command = comm
                 confirmation.toggle()
                 power.toggle()
+            else
+                run_comm(comm)
             end
         end) },
         shape = gears.shape.circle,
@@ -84,12 +85,56 @@ confirmation = awful.popup {
     end,
 }
 
+confirmation = wibox({
+    type    = "popup",
+    shape   = help.rrect(beautiful.br),
+    bg      = beautiful.bg,
+    width   = 150,
+    height  = 150,
+    visible = false,
+    ontop   = true,
+})
+
+awful.placement.bottom(confirmation, { margins = { bottom = beautiful.useless_gap * 4 } })
+
+confirmation:setup({
+    {
+        {
+            {
+                id = "txt",
+                widget = wibox.widget.textbox,
+                font = beautiful.barfont,
+                halign = "center",
+                align = 'center',
+            },
+            margins = dpi(20),
+            widget = wibox.container.margin,
+        },
+        {
+            create_button("\u{58}", function()
+                confirmation.toggle()
+            end, false),
+            create_button("\u{f00c}", function()
+                confirmation.toggle()
+                run_comm(command)
+            end
+                , false),
+            spacing = dpi(15),
+            layout = wibox.layout.fixed.horizontal,
+        },
+        spacing = dpi(15),
+        layout = wibox.layout.fixed.vertical,
+    },
+    margins = dpi(20),
+    widget = wibox.container.margin
+})
+
 power = awful.popup {
     widget    = {
         {
-            create_button("\u{f011}", "shutdown now", true),
-            create_button("\u{f2ea}", "reboot", true),
-            create_button("\u{f2f5}", awesome.quit, true),
+            create_button("\u{f011}", "shutdown now", "Shutdown?", true),
+            create_button("\u{f01e}", "reboot", "Reboot?", true),
+            create_button("\u{f2f5}", awesome.quit, "Quit Awesome?", true),
             spacing = dpi(15),
             layout = wibox.layout.fixed.horizontal,
         },
