@@ -30,7 +30,7 @@ local pop = wibox({
   visible = false,
 })
 
-awful.placement.right(pop, { margins = { right = beautiful.useless_gap * 2 } })
+awful.placement.right(pop, { margins = { right = beautiful.useless_gap * 4 } })
 
 pop:setup({
   {

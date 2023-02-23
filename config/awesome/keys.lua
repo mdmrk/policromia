@@ -31,7 +31,7 @@ keys.globalkeys = gears.table.join(
   end),
 
   -- Window management
-  awful.key({ 'Mod1' }, 'Tab', function() awful.client.focus.byidx(1) end),
+  awful.key({ mod }, 'Tab', function() awful.client.focus.byidx(1) end),
   awful.key({ mod }, 't', function(c) c.ontop = not c.ontop end,
     { description = "toggle keep on top", group = "client" }),
   awful.key({ mod }, 'Right', function() awful.tag.incmwfact(0.025) end),
@@ -46,6 +46,19 @@ keys.globalkeys = gears.table.join(
     { description = "focus the next screen", group = "screen" }),
   awful.key({ mod, "Control" }, "k", function() awful.screen.focus_relative( -1) end,
     { description = "focus the previous screen", group = "screen" }),
+  awful.key({ mod }, "j", function()
+    awful.client.focus.bydirection("down")
+  end),
+  awful.key({ mod }, "h", function()
+    awful.client.focus.bydirection("left")
+  end),
+  awful.key({ mod }, "k", function()
+    awful.client.focus.bydirection("up")
+  end),
+  awful.key({ mod }, "l", function()
+    awful.client.focus.bydirection("right")
+  end),
+
 
   -- Applications
   awful.key({ mod }, 'Return', function() awful.util.spawn('kitty') end),
@@ -70,7 +83,7 @@ keys.clientkeys = gears.table.join(
     c.fullscreen = not c.fullscreen;
     c:raise()
   end),
-  awful.key({ mod }, 'Tab', function() awful.client.floating.toggle() end)
+  awful.key({ mod }, 's', function() awful.client.floating.toggle() end)
 )
 
 -- Mouse controls

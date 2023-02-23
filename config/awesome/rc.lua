@@ -52,6 +52,7 @@ gears.timer {
   timeout = 10,
   single_shot = true,
   autostart = true,
+  call_now = true,
   callback = function()
     signals.vol()
     signals.mic()

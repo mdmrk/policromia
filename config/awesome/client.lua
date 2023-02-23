@@ -7,5 +7,9 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
 client.connect_signal("property::maximized", function(c)
-  c.maximized = false -- no need for maximize
+  c.maximized = false
+end)
+
+client.connect_signal("property::minimized", function(c)
+  c.minimized = false
 end)

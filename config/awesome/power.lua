@@ -25,7 +25,6 @@ local create_button = function(icon, comm, act, requires_confirmation)
         bg = beautiful.bg2,
         buttons = { awful.button({}, 1, function()
             if requires_confirmation then
-                confirmation:get_children_by_id('txt')[1].markup = help.fg(act, beautiful.fg, "bold")
                 command = comm
                 confirmation.toggle()
                 power.toggle()
@@ -49,9 +48,10 @@ confirmation = awful.popup {
     widget    = {
         {
             {
+                id = "txt",
                 widget = wibox.widget.textbox,
                 font = beautiful.barfont,
-                markup = help.fg("Are you sure?", beautiful.fg, "bold"),
+                markup = help.fg("Are you sure?", beautiful.fg, "normal"),
                 halign = "center",
                 align = 'center',
             },
@@ -84,50 +84,6 @@ confirmation = awful.popup {
                 { margins = { bottom = beautiful.useless_gap * 2 } })
     end,
 }
-
-confirmation = wibox({
-    type    = "popup",
-    shape   = help.rrect(beautiful.br),
-    bg      = beautiful.bg,
-    width   = 150,
-    height  = 150,
-    visible = false,
-    ontop   = true,
-})
-
-awful.placement.bottom(confirmation, { margins = { bottom = beautiful.useless_gap * 4 } })
-
-confirmation:setup({
-    {
-        {
-            {
-                id = "txt",
-                widget = wibox.widget.textbox,
-                font = beautiful.barfont,
-                halign = "center",
-                align = 'center',
-            },
-            margins = dpi(20),
-            widget = wibox.container.margin,
-        },
-        {
-            create_button("\u{58}", function()
-                confirmation.toggle()
-            end, false),
-            create_button("\u{f00c}", function()
-                confirmation.toggle()
-                run_comm(command)
-            end
-                , false),
-            spacing = dpi(15),
-            layout = wibox.layout.fixed.horizontal,
-        },
-        spacing = dpi(15),
-        layout = wibox.layout.fixed.vertical,
-    },
-    margins = dpi(20),
-    widget = wibox.container.margin
-})
 
 power = awful.popup {
     widget    = {
