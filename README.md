@@ -32,8 +32,8 @@ AwesomeWM Modules:
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>s</kbd> | Cropped screenshot        |
 | <kbd>Super</kbd> + <kbd>t</kbd>                    | Toggle on top             |
 | <kbd>Super</kbd> + <kbd>f</kbd>                    | Toggle fullscreen         |
-| <kbd>Super</kbd> + <kbd>Tab</kbd>                  | Toggle floating           |
-| <kbd>Alt</kbd> + <kbd>Tab</kbd>                    | Focus next                |
+| <kbd>Super</kbd> + <kbd>s</kbd>                    | Toggle floating           |
+| <kbd>Super</kbd> + <kbd>Tab</kbd>                  | Focus next                |
 
 ## Setup
 
