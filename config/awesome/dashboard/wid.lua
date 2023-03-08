@@ -232,9 +232,9 @@ M.wal:buttons(gears.table.join(
 local function switch_theme(theme)
   help.write_to_file(beautiful.theme_dir .. "activetheme", theme)
   awful.spawn.easy_async_with_shell("cp " ..
-  beautiful.theme_dir .. theme .. "/colors.conf ~/.config/kitty/colors.conf")
+    beautiful.theme_dir .. theme .. "/colors.conf ~/.config/kitty/colors.conf")
   awful.spawn.easy_async_with_shell("cp " ..
-  beautiful.theme_dir .. theme .. "/colors.rasi ~/.config/rofi/colors.rasi")
+    beautiful.theme_dir .. theme .. "/colors.rasi ~/.config/rofi/colors.rasi")
   awful.spawn.easy_async_with_shell("pkill -USR1 kitty")
   awesome.restart()
 end

@@ -35,16 +35,16 @@ keys.globalkeys = gears.table.join(
   awful.key({ mod }, 't', function(c) c.ontop = not c.ontop end,
     { description = "toggle keep on top", group = "client" }),
   awful.key({ mod }, 'Right', function() awful.tag.incmwfact(0.025) end),
-  awful.key({ mod }, 'Left', function() awful.tag.incmwfact( -0.025) end),
+  awful.key({ mod }, 'Left', function() awful.tag.incmwfact(-0.025) end),
   awful.key({ mod }, 'Up', function() awful.client.incwfact(0.05) end),
-  awful.key({ mod }, 'Down', function() awful.client.incwfact( -0.05) end),
+  awful.key({ mod }, 'Down', function() awful.client.incwfact(-0.05) end),
   awful.key({ mod, "Shift" }, "j", function() awful.client.swap.byidx(1) end,
     { description = "swap with next client by index", group = "client" }),
-  awful.key({ mod, "Shift" }, "k", function() awful.client.swap.byidx( -1) end,
+  awful.key({ mod, "Shift" }, "k", function() awful.client.swap.byidx(-1) end,
     { description = "swap with previous client by index", group = "client" }),
   awful.key({ mod, "Control" }, "j", function() awful.screen.focus_relative(1) end,
     { description = "focus the next screen", group = "screen" }),
-  awful.key({ mod, "Control" }, "k", function() awful.screen.focus_relative( -1) end,
+  awful.key({ mod, "Control" }, "k", function() awful.screen.focus_relative(-1) end,
     { description = "focus the previous screen", group = "screen" }),
   awful.key({ mod }, "j", function()
     awful.client.focus.bydirection("down")
@@ -59,6 +59,16 @@ keys.globalkeys = gears.table.join(
     awful.client.focus.bydirection("right")
   end),
 
+  -- Opacity
+  awful.key({ mod, "Control" }, "KP_Subtract", function()
+    awful.spawn("picom-trans -c -o -3", false)
+  end),
+  awful.key({ mod, "Control" }, "KP_Add", function()
+    awful.spawn("picom-trans -c -o +3", false)
+  end),
+  awful.key({ mod, "Control" }, "Return", function()
+    awful.spawn("picom-trans -c -d", false)
+  end),
 
   -- Applications
   awful.key({ mod }, 'Return', function() awful.util.spawn('kitty') end),

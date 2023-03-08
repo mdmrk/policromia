@@ -24,16 +24,19 @@ AwesomeWM Modules:
 
 ### Keys
 
-| Shortcut                                           | Action                    |
-| :------------------------------------------------- | :------------------------ |
-| <kbd>Super</kbd> + <kbd>d</kbd>                    | Toggle dashboard          |
-| <kbd>Super</kbd> + <kbd>e</kbd>                    | Open application launcher |
-| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>e</kbd> | Open emoji list           |
-| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>s</kbd> | Cropped screenshot        |
-| <kbd>Super</kbd> + <kbd>t</kbd>                    | Toggle on top             |
-| <kbd>Super</kbd> + <kbd>f</kbd>                    | Toggle fullscreen         |
-| <kbd>Super</kbd> + <kbd>s</kbd>                    | Toggle floating           |
-| <kbd>Super</kbd> + <kbd>Tab</kbd>                  | Focus next                |
+| Shortcut                                                  | Action                    |
+| :-------------------------------------------------------- | :------------------------ |
+| <kbd>Super</kbd> + <kbd>d</kbd>                           | Toggle dashboard          |
+| <kbd>Super</kbd> + <kbd>e</kbd>                           | Open application launcher |
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>e</kbd>        | Open emoji list           |
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>s</kbd>        | Cropped screenshot        |
+| <kbd>Super</kbd> + <kbd>t</kbd>                           | Toggle on top             |
+| <kbd>Super</kbd> + <kbd>f</kbd>                           | Toggle fullscreen         |
+| <kbd>Super</kbd> + <kbd>s</kbd>                           | Toggle floating           |
+| <kbd>Super</kbd> + <kbd>Tab</kbd>                         | Focus next                |
+| <kbd>Super</kbd> + <kbd>Control</kbd> + <kbd>+</kbd>      | Increase window opacity   |
+| <kbd>Super</kbd> + <kbd>Control</kbd> + <kbd>-</kbd>      | Decrease window opacity   |
+| <kbd>Super</kbd> + <kbd>Control</kbd> + <kbd>Return</kbd> | Reset window opacity      |
 
 ## Setup
 
@@ -42,7 +45,7 @@ Using [paru](https://github.com/Morganamilo/paru) as the AUR helper
 ### Dependencies
 
 ```
-paru -S awesome-git picom-git zsh redshift thunar kitty rofi rofi-emoji xclip scrot gvfs ttf-jetbrains-mono-nerd noto-fonts noto-fonts-cjk networkmanager betterlockscreen lxappearance materia-gtk-theme papirus-icon-theme lsd playerctl brightnessctl pipewire pipewire-alsa pipewire-pulse alsa-utils acpi
+paru -S awesome-git picom-git zsh redshift thunar kitty rofi rofi-emoji xclip xorg-xwininfo scrot gvfs ttf-jetbrains-mono-nerd noto-fonts noto-fonts-cjk networkmanager betterlockscreen lxappearance materia-gtk-theme papirus-icon-theme lsd playerctl brightnessctl pipewire pipewire-alsa pipewire-pulse alsa-utils acpi
 ```
 
 ### Get the repo

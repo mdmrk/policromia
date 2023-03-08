@@ -65,7 +65,7 @@ confirmation = awful.popup {
                     confirmation.toggle()
                     run_comm(command)
                 end
-                    , false),
+                , false),
                 spacing = dpi(15),
                 layout = wibox.layout.fixed.horizontal,
             },
