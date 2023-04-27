@@ -55,5 +55,8 @@ function extract {
 
 source $ZSH/oh-my-zsh.sh
 
+eval "$(zoxide init zsh)"
+
 alias l=ls
 alias ls="lsd -al"
+alias cd=z

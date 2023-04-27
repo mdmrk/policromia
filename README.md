@@ -45,7 +45,11 @@ Using [paru](https://github.com/Morganamilo/paru) as the AUR helper
 ### Dependencies
 
 ```
-paru -S awesome-git picom-git zsh redshift thunar kitty rofi rofi-emoji xclip xorg-xwininfo scrot gvfs ttf-jetbrains-mono-nerd noto-fonts noto-fonts-cjk networkmanager betterlockscreen lxappearance materia-gtk-theme papirus-icon-theme lsd playerctl brightnessctl pipewire pipewire-alsa pipewire-pulse alsa-utils acpi
+paru -S \
+    `#core packages` \
+    awesome-git picom-git redshift kitty rofi rofi-emoji xclip xorg-xwininfo scrot ttf-jetbrains-mono-nerd noto-fonts noto-fonts-cjk networkmanager betterlockscreen playerctl brightnessctl pipewire pipewire-alsa pipewire-pulse alsa-utils acpi \
+    `#extra packages` \
+    zsh gvfs thunar lsd zoxide bat fzf lxappearance materia-gtk-theme papirus-icon-theme
 ```
 
 ### Get the repo
