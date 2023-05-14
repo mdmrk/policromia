@@ -169,7 +169,7 @@ awesome.connect_signal("bat::value", function(status, charge)
   else
     icon = "\u{f244}"
   end
-  if status == "Charging" then
+  if status == "Charging" or status == "Full" then
     icon = help.fg(icon, beautiful.ok, "normal")
     if charge >= 90 then
       naughty.notify({
