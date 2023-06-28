@@ -201,6 +201,7 @@ gears.timer {
         else
           city = out
         end
+        city = city:gsub(" ", "-")
         local com = "curl 'wttr.in/" .. city .. "?" .. unit .. "&format=%c+%t+%w'"
 
         awful.widget.watch(com, 600, function(widget, out)
