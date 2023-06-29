@@ -55,7 +55,7 @@ paru -S \
 ### Get the repo
 
 ```
-git clone --recurse-submodules https://github.com/mariv1k/dotfiles
+git clone --recurse-submodules https://github.com/mdmrk/policromia
 cd dotfiles
 ```
 
