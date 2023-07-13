@@ -38,7 +38,6 @@ theme.bg_focus                        = theme.fg2 .. "cc"
 
 theme.useless_gap                     = dpi(4)
 theme.snap_bg                         = theme.fg2
-
 theme.border_width                    = dpi(0)
 theme.border_color                    = theme.bg
 
@@ -69,8 +68,10 @@ theme.systray_icon_spacing            = dpi(10)
 
 theme.notification_bg                 = theme.bg
 theme.notification_fg                 = theme.fg
+theme.max_notification_width          = dpi(225)
 theme.notification_width              = dpi(225)
-theme.notification_max_height         = dpi(80)
+theme.notification_max_height         = dpi(100)
+theme.notification_icon_size          = dpi(50)
 
 theme.separator_color                 = theme.fg2
 
