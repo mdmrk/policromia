@@ -3,21 +3,21 @@ local playerctl = bling.signal.playerctl.lib()
 
 local prev = wibox.widget {
   align = 'center',
-  font = beautiful.icofont,
+  font = beautiful.icofontname .. "12",
   text = '\u{f048}',
   widget = wibox.widget.textbox,
 }
 
 local next = wibox.widget {
   align = 'center',
-  font = beautiful.icofont,
+  font = beautiful.icofontname .. "12",
   markup = '\u{f051}',
   widget = wibox.widget.textbox,
 }
 
 local play = wibox.widget {
   align = 'center',
-  font = beautiful.icofont,
+  font = beautiful.icofontname .. "12",
   markup = '\u{f04b}',
   widget = wibox.widget.textbox
 }
@@ -30,15 +30,6 @@ next:buttons(gears.table.join(
 
 prev:buttons(gears.table.join(
   awful.button({}, 1, function() playerctl:previous() end)))
-
-local position = wibox.widget {
-  forced_height    = dpi(3),
-  shape            = help.rrect(beautiful.br),
-  color            = beautiful.pri,
-  background_color = beautiful.fg2 .. '4D',
-  forced_width     = dpi(175),
-  widget           = wibox.widget.progressbar,
-}
 
 local art = wibox.widget {
   image = beautiful.theme_dir .. "player.png",
@@ -74,31 +65,30 @@ local player = wibox.widget {
       bg = {
         type = "linear",
         from = { 0, 0 },
-        to = { 120, 0 },
+        to = { beautiful.dashboard_width / 4, 0 },
         stops = { { 0, beautiful.bg2 .. "00" }, { 1, beautiful.bg2 .. "FF" } }
       },
       widget = wibox.container.background,
     },
     {
       {
+
         name,
         artist_name,
-        position,
         {
           prev,
           play,
           next,
           layout = wibox.layout.flex.horizontal
         },
-        spacing = dpi(10),
-        layout = wibox.layout.fixed.vertical,
+        layout = wibox.layout.flex.vertical,
       },
       margins = dpi(20),
       widget = wibox.container.margin,
     },
     layout = wibox.layout.stack,
   },
-  forced_height = dpi(124),
+  forced_height = dpi(120),
   shape = help.rrect(beautiful.br),
   bg = beautiful.bg2,
   widget = wibox.container.background,
@@ -115,17 +105,14 @@ end)
 
 playerctl:connect_signal("playback_status", function(_, playing, _)
   if playing then
+    next:set_markup_silently(help.fg("\u{f051}", beautiful.pri, "normal"))
+    prev:set_markup_silently(help.fg("\u{f048}", beautiful.pri, "normal"))
     play:set_markup_silently(help.fg("\u{f04c}", beautiful.pri, "normal"))
-    position.color = beautiful.pri
   else
+    next:set_markup_silently("\u{f051}")
+    prev:set_markup_silently("\u{f048}")
     play:set_markup_silently("\u{f04b}")
-    position.color = beautiful.fg
   end
-end)
-
-playerctl:connect_signal("position", function(_, a, b, _)
-  position.value = a
-  position.max_value = b
 end)
 
 return player

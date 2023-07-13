@@ -52,8 +52,7 @@ local sliders = wibox.widget {
   widget = wibox.container.background,
 }
 
-local buttons = wibox.widget {
-  {
+local buttons = wibox.widget
     {
       {
         wid.net,
@@ -67,14 +66,8 @@ local buttons = wibox.widget {
       },
       layout = wibox.layout.fixed.vertical,
       spacing = dpi(10),
-    },
-    widget = wibox.container.margin,
-    margins = dpi(20),
-  },
-  shape = help.rrect(beautiful.br),
-  widget = wibox.container.background,
-  bg = beautiful.bg2,
-}
+    }
+
 
 local themeswitcher = wibox.widget {
   {
@@ -93,8 +86,8 @@ local themeswitcher = wibox.widget {
 }
 
 local tray = wibox.widget {
-  forced_height = dpi(40),
-  widget = wibox.widget.systray
+  forced_height = dpi(0),
+  widget = wibox.widget.systray,
 }
 
 local dashboard = awful.popup {
@@ -105,6 +98,7 @@ local dashboard = awful.popup {
         top.cal,
         top.wth,
         spacing = dpi(15),
+        forced_height = dpi(120),
         layout = wibox.layout.flex.horizontal,
       },
       play,
@@ -116,7 +110,6 @@ local dashboard = awful.popup {
       },
       buttons,
       themeswitcher,
-      tray,
       spacing = dpi(15),
       layout = wibox.layout.fixed.vertical,
     },
