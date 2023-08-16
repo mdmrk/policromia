@@ -53,7 +53,7 @@ M.ses = wibox.widget {
           widget = wibox.widget.textbox
         },
         {
-          markup = help.fg("arch", beautiful.fg, "normal"),
+          markup = help.fg(awesome.hostname or "arch", beautiful.fg, "normal"),
           font = beautiful.fontname .. "10",
           widget = wibox.widget.textbox
         },
