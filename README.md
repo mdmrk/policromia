@@ -56,7 +56,7 @@ paru -S \
 
 ```
 git clone --recurse-submodules https://github.com/mdmrk/policromia
-cd dotfiles
+cd policromia
 ```
 
 ### Install
