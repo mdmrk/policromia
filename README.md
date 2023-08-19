@@ -15,7 +15,6 @@
 - **Editor:** [neovim](https://github.com/neovim/neovim)
 - **Compositor:** [picom](https://github.com/yshui/picom)
 - **Application Launcher:** [rofi](https://github.com/davatorium/rofi)
-- **Emoji List:** [rofi-emoji](https://github.com/Mange/rofi-emoji)
 
 AwesomeWM Modules:
 
@@ -28,7 +27,6 @@ AwesomeWM Modules:
 | :-------------------------------------------------------- | :------------------------ |
 | <kbd>Super</kbd> + <kbd>d</kbd>                           | Toggle dashboard          |
 | <kbd>Super</kbd> + <kbd>e</kbd>                           | Open application launcher |
-| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>e</kbd>        | Open emoji list           |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>s</kbd>        | Cropped screenshot        |
 | <kbd>Super</kbd> + <kbd>t</kbd>                           | Toggle on top             |
 | <kbd>Super</kbd> + <kbd>f</kbd>                           | Toggle fullscreen         |
@@ -47,7 +45,7 @@ Using [paru](https://github.com/Morganamilo/paru) as the AUR helper
 ```
 paru -S \
     `#core packages` \
-    awesome-git picom-git redshift kitty rofi rofi-emoji xclip xorg-xwininfo scrot ttf-jetbrains-mono-nerd noto-fonts noto-fonts-cjk networkmanager betterlockscreen playerctl brightnessctl pipewire pipewire-alsa pipewire-pulse alsa-utils acpi \
+    awesome-git picom-git redshift kitty rofi xclip xorg-xwininfo scrot ttf-jetbrains-mono-nerd noto-fonts noto-fonts-cjk networkmanager betterlockscreen playerctl brightnessctl pipewire pipewire-alsa pipewire-pulse alsa-utils acpi \
     `#extra packages` \
     zsh gvfs thunar lsd zoxide bat fzf lxappearance materia-gtk-theme papirus-icon-theme
 ```
