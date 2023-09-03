@@ -20,6 +20,8 @@ AwesomeWM Modules:
 
 - **[bling](https://github.com/blingcorp/bling)**
   - Adds new layouts, modules, and widgets that try to focus on window management primarily
+- **[rubato](https://github.com/andOrlando/rubato)**
+  - Create smooth animations with a slope curve for awesomeWM
 
 ### Keys
 
