@@ -38,52 +38,56 @@ end
 M.ses = wibox.widget {
   {
     {
-      image = beautiful.theme_dir .. "profile.png",
-      resize = true,
-      opacity = 0.8,
-      forced_height = dpi(100),
-      clip_shape = gears.shape.circle,
-      widget = wibox.widget.imagebox
+      {
+        image = beautiful.theme_dir .. "profile.png",
+        resize = true,
+        opacity = 0.8,
+        forced_height = dpi(100),
+        clip_shape = gears.shape.circle,
+        widget = wibox.widget.imagebox
+      },
+      {
+        {
+          {
+            markup = help.fg(os.getenv('USER') or "foo", beautiful.pri, "normal"),
+            font = beautiful.fontname .. "14",
+            widget = wibox.widget.textbox
+          },
+          {
+            markup = help.fg(awesome.hostname or "arch", beautiful.fg, "normal"),
+            font = beautiful.fontname .. "10",
+            widget = wibox.widget.textbox
+          },
+          spacing = dpi(5),
+          layout = wibox.layout.fixed.vertical
+        },
+        widget = wibox.container.place,
+        valign = "center",
+        halign = "left"
+      },
+      spacing = dpi(20),
+      layout = wibox.layout.flex.horizontal
     },
     {
       {
-        {
-          markup = help.fg(os.getenv('USER'), beautiful.pri, "normal"),
-          font = beautiful.fontname .. "14",
-          widget = wibox.widget.textbox
-        },
-        {
-          markup = help.fg(awesome.hostname or "arch", beautiful.fg, "normal"),
-          font = beautiful.fontname .. "10",
-          widget = wibox.widget.textbox
-        },
-        spacing = dpi(5),
-        layout = wibox.layout.fixed.vertical
+        create_button("\u{f023}", function()
+          dashboard.toggle()
+          awful.spawn("betterlockscreen -l", false)
+        end),
+        create_button("\u{f011}", function()
+          power.toggle()
+          dashboard.toggle()
+        end),
+        spacing = dpi(15),
+        layout = wibox.layout.fixed.horizontal,
       },
       widget = wibox.container.place,
-      valign = "center",
-      halign = "left"
+      halign = "right",
     },
-    spacing = dpi(20),
-    layout = wibox.layout.flex.horizontal
+    layout = wibox.layout.flex.horizontal,
   },
-  {
-    {
-      create_button("\u{f023}", function()
-        dashboard.toggle()
-        awful.spawn("betterlockscreen -l", false)
-      end),
-      create_button("\u{f011}", function()
-        power.toggle()
-        dashboard.toggle()
-      end),
-      spacing = dpi(15),
-      layout = wibox.layout.fixed.horizontal,
-    },
-    widget = wibox.container.place,
-    halign = "right",
-  },
-  layout = wibox.layout.flex.horizontal,
+  widget = wibox.container.margin,
+  margins = { bottom = dpi(10), top = dpi(10) }
 }
 
 M.pfl = wibox.widget {
