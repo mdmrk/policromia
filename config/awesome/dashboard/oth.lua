@@ -187,30 +187,22 @@ gears.timer {
     -- m = ºC, km/h
     -- u = ºF, mph
     local unit = "m"
-    local city
-    local fallback_city = "alicante"
-    awful.spawn.easy_async_with_shell("curl -s https://ipinfo.io/$(curl -s ifconfig.me) | jq -r .city",
-      function(out)
-        out = out:sub(1, -2)
-        if out == "" then
-          city = fallback_city
-        else
-          city = out
-        end
-        city = city:gsub(" ", "-")
-        local com = "curl 'wttr.in/" .. city .. "?" .. unit .. "&format=%c+%t+%w'"
+    -- empty: auto location
+    local city = ""
+    -- seconds
+    local interval = 60 * 10
+    local com = "curl 'wttr.in/" .. city .. "?" .. unit .. "&format=%c+%t+%w'"
 
-        awful.widget.watch(com, 600, function(widget, out)
-          local val = gears.string.split(out, " ")
-          local sign = val[2]:sub(1, 1)
+    awful.widget.watch(com, interval, function(_, out)
+      local val = gears.string.split(out, " ")
+      local sign = val[2]:sub(1, 1)
 
-          M.wth:get_children_by_id("icn")[1].markup = val[1]
-          M.wth:get_children_by_id("wth")[1].markup = help.fg(
-            (sign == "-" and "-" or "") .. val[2]:sub(2),
-            beautiful.pri, "1000")
-          M.wth:get_children_by_id("wnd")[1].markup = help.fg(val[3]:sub(1, -2), beautiful.fg2, "bold")
-        end)
-      end)
+      M.wth:get_children_by_id("icn")[1].markup = val[1]
+      M.wth:get_children_by_id("wth")[1].markup = help.fg(
+        (sign == "-" and "-" or "") .. val[2]:sub(2),
+        beautiful.pri, "1000")
+      M.wth:get_children_by_id("wnd")[1].markup = help.fg(val[3]:sub(1, -2), beautiful.fg2, "bold")
+    end)
   end
 }
 
