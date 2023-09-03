@@ -1,5 +1,6 @@
 local height = dpi(250)
 local width = dpi(50)
+local rubato = require("lib.rubato")
 
 local prg = wibox.widget {
   max_value = 100,
@@ -53,6 +54,12 @@ local run = gears.timer {
   end
 }
 
+local timed = rubato.timed {
+  duration = 1 / 4,
+  easing = rubato.quadratic,
+  subscribed = function(pos) prg.value = pos end
+}
+
 awesome.connect_signal('vol::value', function(mut, vol)
   if mut == 0 then
     prg.color = beautiful.pri
@@ -61,7 +68,7 @@ awesome.connect_signal('vol::value', function(mut, vol)
     prg.color = beautiful.err
     icon.markup = help.fg("\u{f6a9}", beautiful.bg3, "normal")
   end
-  prg.value = vol
+  timed.target = vol
   if pop.visible then
     run:again()
   else

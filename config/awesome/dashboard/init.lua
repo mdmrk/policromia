@@ -98,7 +98,7 @@ local dashboard = awful.popup {
         top.cal,
         top.wth,
         spacing = dpi(15),
-        forced_height = dpi(120),
+        forced_height = dpi(110),
         layout = wibox.layout.flex.horizontal,
       },
       play,
