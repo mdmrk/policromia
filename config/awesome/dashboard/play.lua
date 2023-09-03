@@ -1,4 +1,4 @@
-local bling = require("bling")
+local bling = require("lib.bling")
 local playerctl = bling.signal.playerctl.lib()
 
 local prev = wibox.widget {
