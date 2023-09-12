@@ -1,7 +1,6 @@
 local wid = require("dashboard.wid")
 local sli = require("dashboard.sli")
 local top = require('dashboard.oth')
-local play = require("dashboard.play")
 
 local sep = wibox.widget {
   {
@@ -101,7 +100,6 @@ local dashboard = awful.popup {
         forced_height = dpi(110),
         layout = wibox.layout.flex.horizontal,
       },
-      play,
       {
         sliders,
         wid.bat,
