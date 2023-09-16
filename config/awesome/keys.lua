@@ -34,6 +34,8 @@ keys.globalkeys = gears.table.join(
   awful.key({ mod }, 'Tab', function() awful.client.focus.byidx(1) end),
   awful.key({ mod }, 't', function(c) c.ontop = not c.ontop end,
     { description = "toggle keep on top", group = "client" }),
+  awful.key({ mod, "Shift" }, 't', function(c) c.sticky = not c.sticky end,
+    { description = "toggle keep on top", group = "client" }),
   awful.key({ mod }, 'Right', function() awful.tag.incmwfact(0.025) end),
   awful.key({ mod }, 'Left', function() awful.tag.incmwfact(-0.025) end),
   awful.key({ mod }, 'Up', function() awful.client.incwfact(0.05) end),
@@ -82,7 +84,6 @@ keys.globalkeys = gears.table.join(
 -- Keyboard Control
 keys.clientkeys = gears.table.join(
   awful.key({ mod }, 'q', function(c) c:kill() end),
-  awful.key({ mod }, 'm', function(c) c.minimized = true end),
   awful.key({ mod }, 'f', function(c)
     c.fullscreen = not c.fullscreen;
     c:raise()
