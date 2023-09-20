@@ -24,7 +24,7 @@ awful.rules.rules = {
   -- Floating, Titlebar exceptions
   {
     rule_any = {
-      class = { 'gnome', 'gtk', 'qt5ct', 'steam' },
+      class = { 'gnome', 'gtk', 'qt5ct', 'steam', 'VirtualBox Manager' },
       name = { 'Event Tester', 'Komikku', 'marker' },
       type = { 'dialog' }
     },
