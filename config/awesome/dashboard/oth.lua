@@ -194,7 +194,7 @@ gears.timer {
     -- empty: auto location
     local city = ""
     -- seconds
-    local interval = 60 * 10
+    local interval = 60 * 30
     local com = "curl 'wttr.in/" .. city .. "?" .. unit .. "&format=%c+%t+%w'"
 
     awful.widget.watch(com, interval, function(_, out)
