@@ -62,10 +62,10 @@ cd policromia
 ### Install
 
 ```
-cp -r config/awesome/* ~/.config/awesome
-cp -r config/picom/* ~/.config/picom
-cp -r config/fontconfig/* ~/.config/fontconfig/conf.d
-cp -r config/kitty/* ~/.config/kitty
-cp -r config/rofi/* ~/.config/rofi
-cp -r fonts/* ~/.local/share/fonts
+mkdir -p ~/.config/awesome && cp -r config/awesome/* ~/.config/awesome
+mkdir -p ~/.config/picom && cp -r config/picom/* ~/.config/picom
+mkdir -p ~/.config/fontconfig/conf.d && cp -r config/fontconfig/* ~/.config/fontconfig/conf.d
+mkdir -p ~/.config/kitty && cp -r config/kitty/* ~/.config/kitty
+mkdir -p ~/.config/rofi && cp -r config/rofi/* ~/.config/rofi
+mkdir -p ~/.local/share/fonts && cp -r fonts/* ~/.local/share/fonts
 ```
