@@ -1,23 +1,67 @@
-local menu = {
-  { "\u{f021} Refresh",  awesome.restart },
-  { "\u{f2f5} Logout",   function() awesome.quit() end },
-  { "\u{f01e} Restart",  function() awful.spawn.with_shell('reboot') end },
-  { "\u{f011} Shutdown", function() awful.spawn.with_shell('shutdown now') end },
+local system = {
+	{
+		"Lock screen",
+		function()
+			awful.spawn("betterlockscreen -l", false)
+		end,
+	},
+	{
+		"Log out",
+		function()
+			awesome.quit()
+		end,
+	},
+	{
+		"Reboot",
+		function()
+			awful.spawn("systemctl reboot")
+		end,
+	},
+	{
+		"Suspend",
+		function()
+			awful.spawn("systemctl suspend")
+		end,
+	},
+	{
+		"Hibernate",
+		function()
+			awful.spawn("systemctl hibernate")
+		end,
+	},
+	{
+		"Shut down",
+		function()
+			awful.spawn("systemctl poweroff")
+		end,
+	},
 }
 
-local main = awful.menu {
-  items = {
-    {
-      "Awesome",
-      menu,
-    },
-    { "\u{f120} Terminal", "kitty" },
-    { "\u{f0ac} Browser",  "firefox" },
-    { "\u{f15b} Editor",   "kitty -e nvim" },
-    { "\u{f07b} Files",    "thunar" },
-  }
+local awesome = {
+	{ "Refresh", awesome.restart },
 }
 
-root.buttons(gears.table.join(
-  awful.button({}, 3, function() main:toggle() end)
-))
+awful.menu.original_new = awful.menu.new
+function awful.menu.new(...)
+	local ret = awful.menu.original_new(...)
+	ret.wibox.shape = help.rrect(beautiful.br)
+	return ret
+end
+
+local main = awful.menu({
+	items = {
+		{ "System", system },
+		{
+			"Awesome",
+			awesome,
+		},
+		{ "Terminal", "kitty" },
+		{ "Browser", "firefox" },
+		{ "Editor", "kitty -e nvim" },
+		{ "Files", "thunar" },
+	},
+})
+
+root.buttons(gears.table.join(awful.button({}, 3, function()
+	main:toggle()
+end)))

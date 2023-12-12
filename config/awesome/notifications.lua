@@ -14,16 +14,16 @@ naughty.config.defaults.fg = beautiful.fg
 naughty.config.defaults.bg = beautiful.bg
 
 naughty.config.presets.normal = {
-  fg = beautiful.fg,
-  bg = beautiful.bg,
+	fg = beautiful.fg,
+	bg = beautiful.bg,
 }
 
 naughty.config.presets.low = {
-  fg = beautiful.ok,
-  bg = beautiful.bg,
+	fg = beautiful.ok,
+	bg = beautiful.bg,
 }
 
 naughty.config.presets.critical = {
-  fg = beautiful.err,
-  bg = beautiful.bg,
+	fg = beautiful.err,
+	bg = beautiful.bg,
 }
