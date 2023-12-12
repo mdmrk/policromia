@@ -68,8 +68,8 @@ and a folder named `wallpapers`.
 - `colors.nvim` · neovim [nvchad](https://github.com/NvChad/NvChad)
 - `colors.conf` · kitty
 
-> [!TIP] copy an existing theme folder and modify the values in each file
-> accordingly
+> [!TIP]
+> copy an existing theme folder and modify the values in each file accordingly
 
 ## keybindings
 
@@ -91,8 +91,8 @@ and a folder named `wallpapers`.
 
 ### automatic
 
-> [!NOTE] you won't be asked for any customization parameters, so consider
-> tweaking before running
+> [!NOTE]
+> you won't be asked for any customization parameters, so consider tweaking before running
 
 ```sh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/mdmrk/policromia/install.sh)"
