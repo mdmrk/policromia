@@ -120,7 +120,7 @@ setup_policromia() {
 	paru -S ${PACKAGES}
 	cd /tmp
 	print_style ${Yellow} "cloning policromia"
-	git clone --depth 1 --recurse-submodules --shallow-submodules https://github.com/mdmrk/policromia --branch 2.0
+	git clone --depth 1 --recurse-submodules --shallow-submodules https://github.com/mdmrk/policromia
 	cd policromia
 	print_style ${Yellow} "installing"
 	mkdir -p ~/.config/awesome && cp -r config/awesome/* ~/.config/awesome
