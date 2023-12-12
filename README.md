@@ -95,7 +95,7 @@ and a folder named `wallpapers`.
 > you won't be asked for any customization parameters, so consider tweaking before running
 
 ```sh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/mdmrk/policromia/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/mdmrk/policromia/main/install.sh)"
 ```
 
 ### manual
@@ -105,7 +105,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/mdmrk/policromia/install.s
 Using [paru](https://github.com/Morganamilo/paru) as the AUR helper
 
 ```sh
-paru -S awesome-git picom-git redshift kitty rofi xclip xorg-xwininfo scrot ttf-jetbrains-mono-nerd noto-fonts noto-fonts-cjk networkmanager betterlockscreen brightnessctl pipewire pipewire-alsa pipewire-pulse alsa-utils acpi zsh gvfs thunar lsd zoxide bat lxappearance jq curl
+paru -S awesome-git picom-git redshift kitty rofi xclip xorg-xwininfo scrot ttf-jetbrains-mono-nerd noto-fonts noto-fonts-cjk networkmanager betterlockscreen brightnessctl pipewire pipewire-alsa pipewire-pulse alsa-utils acpi zsh gvfs thunar lsd zoxide bat lxappearance jq curl p7zip
 ```
 
 #### clone the repo
