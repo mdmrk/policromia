@@ -22,5 +22,5 @@ cp $activetheme/colors.conf $HOME/.config/kitty/colors.conf &
 cp $activetheme/colors.rasi $HOME/.config/rofi/colors.rasi &
 sed -i "s/\(gtk-theme-name=\).*/\1$(cat ${activetheme}/colors.gtk)/" $HOME/.config/gtk-3.0/settings.ini
 sed -i "s/\(gtk-theme-name=\).*/\1\"$(cat ${activetheme}/colors.gtk)\"/" $HOME/.gtkrc-2.0
-sed -i "/theme =/s/\"[^\"]*\"/\"$(cat ${activetheme}/colors.nvim)\"/" $HOME/.config/nvim/lua/custom/chadrc.lua
+sed -i "/theme =/s/\"[^\"]*\"/\"$(cat ${activetheme}/colors.nvim)\"/" $HOME/.config/nvim/lua/chadrc.lua
 echo 'awesome.restart()' | awesome-client >/dev/null
